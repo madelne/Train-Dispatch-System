@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 public class TrainDepartureTest {
 
     @Test
-    void testConstructorPos1(){
+    void testConstructorPos(){
         TrainDeparture train = new TrainDeparture(LocalTime.of(05, 15), "L1", 123, "Lillestrøm", 3, LocalTime.of(0, 10));
         assertEquals(LocalTime.of(05, 15), train.getDeparture_time());
         assertEquals("L1", train.getLine());
@@ -25,13 +25,13 @@ public class TrainDepartureTest {
     }
 
     @Test
-    void testConstructorPos2(){
-        TrainDeparture train = new TrainDeparture(LocalTime.of(0, 0), "0", 1, "/+-#.", 100, LocalTime.of(0, 0));
+    void testConstructorExtreme(){
+        TrainDeparture train = new TrainDeparture(LocalTime.of(0, 0), "0", 1, "/+-#.", 100000, LocalTime.of(0, 0));
         assertEquals(LocalTime.of(0, 0), train.getDeparture_time());
         assertEquals("0", train.getLine());
         assertEquals(1, train.getTrainNumber());
         assertEquals("/+-#.", train.getDestination());
-        assertEquals(100, train.getTrack());
+        assertEquals(100000, train.getTrack());
         assertEquals(LocalTime.of(0, 0), train.getDelay());
     }
 
