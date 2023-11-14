@@ -36,7 +36,32 @@ public class TrainDeparture {
         this.delay = delay;
     }
 
+    public LocalTime getDeparture_time() {
+        return this.departure_time;
+    }
 
+    public String getLine() {
+        return this.line;
+    }
+
+    public int getTrainNumber() {
+        return this.trainNumber;
+    }
+
+    public String getDestination() {
+        return this.destination;
+    }
+
+    public int getTrack() {
+        return this.track;
+    }
+
+    public LocalTime getDelay() {
+        return this.delay;
+    }
+
+   
+    
 
 
 }
