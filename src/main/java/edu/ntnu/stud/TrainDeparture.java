@@ -59,9 +59,9 @@ public class TrainDeparture {
     public LocalTime getDelay() {
         return this.delay;
     }
-
-   
     
-
+    public void setDelay(LocalTime delay) {
+        this.delay = delay;
+    }
 
 }
