@@ -4,10 +4,6 @@ import java.time.LocalTime;
 
 public class ItrainRegister {
 
-    
-    
-
-    
   void start() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(13, 16), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3));

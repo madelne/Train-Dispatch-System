@@ -6,7 +6,11 @@ package edu.ntnu.stud;
 public class TrainDispatchApp {
 
   public static void main(String[]args){
-        
+    ItrainRegister newRegister = new ItrainRegister();
+
+    newRegister.init();
+    newRegister.start();
+    
   }
   
 }
