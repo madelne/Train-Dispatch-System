@@ -24,7 +24,6 @@ import java.time.LocalTime;
  * <p>UGYLDIG DATA:
  * ????????????
  */
-
 public class TrainDeparture {
 
   private LocalTime departureTime;
@@ -34,6 +33,22 @@ public class TrainDeparture {
   private int track;
   private LocalTime delay;
 
+  /** 
+   * Constructor for class TrainDeparture.
+   *
+   * @param departureTime The train's time of departure
+   * 
+   * @param line          The name of the line
+   * 
+   * @param trainNumber   The train's number
+   * 
+   * @param destination   The train's final destination
+   * 
+   * @param track         The track the train will departure from
+   * 
+   * @param delay         Amount of time the train is delayed
+   * 
+   * */ 
   public TrainDeparture(LocalTime departureTime, String line, int trainNumber, 
         String destination, int track, LocalTime delay) {
     if (departureTime == null) {
@@ -62,6 +77,21 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
+
+  /**
+   * Constructor for class TrainDeparture without delay.
+   *
+   * @param departureTime The train's time of departure
+   *  
+   * @param line          The name of the line
+   * 
+   * @param trainNumber   The train's number
+   * 
+   * @param destination   The train's final destination
+   * 
+   * @param track         The track the train will departure from
+   * 
+   */
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination, int track) {
     if (departureTime == null) {
@@ -86,6 +116,20 @@ public class TrainDeparture {
     this.track = track;
   }
 
+  /**
+   * Constructor for class TrainDeparture without track.
+   *
+   * @param departureTime The train's time of departure
+   * 
+   * @param line          The name of the line
+   * 
+   * @param trainNumber   The train's number
+   * 
+   * @param destination   The train's final destination
+   * 
+   * @param delay         Amount of time the train is delayed
+   * 
+   */
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination, LocalTime delay) {
     if (departureTime == null) {
@@ -110,6 +154,19 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
+
+  /**
+   * Constructor for class TrainDeparture without track and delay.
+   *
+   * @param departureTime The train's time of departure
+   * 
+   * @param line          The name of the line
+   * 
+   * @param trainNumber   The train's number
+   * 
+   * @param destination   The train's final destination
+   * 
+   */
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination) {
     if (departureTime == null) {
@@ -130,19 +187,10 @@ public class TrainDeparture {
     this.destination = destination;
   }
 
-    
-    
-  /** 
-   * @return LocalTime
-  */
-  public LocalTime getDeparture_time() {
+  public LocalTime getDepartureTime() {
     return this.departureTime;
   }
-
-    
-  /** 
-   * @return String
-  */
+  
   public String getLine() {
     return this.line;
   }
@@ -167,11 +215,10 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
-
   @Override
   public String toString() {
     return "{" 
-        + " departureTime='" + getDeparture_time() + "'" 
+        + " departureTime='" + getDepartureTime() + "'" 
         + ", line='" + getLine() + "'" 
         + ", trainNumber='" + getTrainNumber() + "'" 
         + ", destination='" + getDestination() + "'" 

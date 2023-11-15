@@ -2,7 +2,11 @@ package edu.ntnu.stud;
 
 import java.time.LocalTime;
 
-public class ItrainRegister {
+/**
+ * This is the user interface ItrainDeparture.
+ * 
+ */
+public class ItrainDeparture {
 
   void start() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(13, 16), "L1", 

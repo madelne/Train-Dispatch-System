@@ -5,11 +5,14 @@ package edu.ntnu.stud;
  */
 public class TrainDispatchApp {
 
-  public static void main(String[]args){
-    ItrainRegister newRegister = new ItrainRegister();
+  /**
+   * The main method.
+   */
+  public static void main(String[]args) {
+    ItrainDeparture newDeparture = new ItrainDeparture();
 
-    newRegister.init();
-    newRegister.start();
+    newDeparture.init();
+    newDeparture.start();
     
   }
   
