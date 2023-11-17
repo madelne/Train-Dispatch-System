@@ -1,5 +1,6 @@
 package edu.ntnu.stud;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -43,6 +44,33 @@ public class TrainDepartureRegister {
   public TrainDeparture searchByTrainNumber(int trainNumber) {
     return trainDepartures.stream().filter(train -> train.getTrainNumber() == trainNumber)
     .findFirst().orElseThrow(() -> new IllegalArgumentException("Train departure not found"));
+  }
+
+  /**
+   * This method takes a destination and puts all the trains with this 
+   * destination in an ArrayList.
+   *
+   * @param destination
+   * 
+   * @return Returns an ArrayList with all the trains going to the given destination.
+   *     If there are no trains going to the given destination, the method returns an empty 
+   *     ArrayList.
+   */
+  public ArrayList<TrainDeparture> searchByDestination(String destination) {
+    ArrayList<TrainDeparture> trainsWithDestination = new ArrayList<TrainDeparture>();
+    trainDepartures.stream().filter(train -> train.getDestination() == destination)
+    .forEach(train -> trainsWithDestination.add(train));
+    return trainsWithDestination;
+  }
+
+  /**
+   * This method removes all trains that have had departure time, including delay, 
+   * prior to the current time.
+   */
+  public void removePreviousDepartures() {
+    trainDepartures.stream().filter(train -> train.getDepartureTime().plusHours(
+        train.getDelay().getHour()).plusMinutes(train.getDelay().getMinute())
+        .isAfter(LocalTime.now()));
   }
 
 }
