@@ -23,6 +23,8 @@ import java.time.LocalTime;
  * 
  * <p>UGYLDIG DATA:
  * ????????????
+ *
+ * @author Madeleine Negård
  */
 public class TrainDeparture {
 

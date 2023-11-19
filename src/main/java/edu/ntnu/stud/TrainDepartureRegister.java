@@ -2,10 +2,11 @@ package edu.ntnu.stud;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 /**
  * This class is a register that holds all train departures.
+ *
+ * @author Madeleine Negård
  */
 public class TrainDepartureRegister {
         
@@ -73,4 +74,18 @@ public class TrainDepartureRegister {
         .isAfter(LocalTime.now()));
   }
 
+  /**
+   * This method makes an ArrayList with all the train departures sorted by departure time.
+   *
+   * @return Returns the sorted ArrayList.
+   *
+   */
+  public ArrayList<TrainDeparture> sortList() {
+    ArrayList<TrainDeparture> sortertListe = new ArrayList<TrainDeparture>();
+    trainDepartures.stream().sorted((train1, train2) -> (train1.getDepartureTime()
+    .getHour() - train2.getDepartureTime().getHour()) * 100 + (train1.getDepartureTime()
+    .getMinute() - train2.getDepartureTime().getMinute()))
+    .forEach(train -> sortertListe.add(train));
+    return sortertListe;
+  }
 }

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 /**
  * This is the user interface ItrainDeparture.
  * 
+ * 
  */
 public class ItrainDeparture {
 

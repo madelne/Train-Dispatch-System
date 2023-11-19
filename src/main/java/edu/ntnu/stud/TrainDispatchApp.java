@@ -2,6 +2,8 @@ package edu.ntnu.stud;
 
 /**
  * This is the main class for the train dispatch application.
+ *
+ * @author Madeleine Negård
  */
 public class TrainDispatchApp {
 
