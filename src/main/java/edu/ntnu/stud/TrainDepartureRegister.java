@@ -12,7 +12,20 @@ public class TrainDepartureRegister {
         
   public ArrayList<TrainDeparture> trainDepartures = new ArrayList<TrainDeparture>();
 
+  /**
+   * Constructor for class TrainDepartureRegister.
+   *
+   * @param trainDepartures An ArrayList that holds train departures.
+   */
   public TrainDepartureRegister(ArrayList<TrainDeparture> trainDepartures) {
+    this.trainDepartures = trainDepartures;
+  }
+
+  /**
+   * Constructor for class TrainDepartureRegister for empty register.
+   */
+  public TrainDepartureRegister() {
+    ArrayList<TrainDeparture> trainDepartures = new ArrayList<TrainDeparture>();
     this.trainDepartures = trainDepartures;
   }
 

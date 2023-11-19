@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 public class TrainDepartureRegisterTest {
   
   @Test
-  void testConstructorPos() {
+  void testConstructor1Pos() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
     TrainDeparture train2 = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
@@ -25,18 +25,32 @@ public class TrainDepartureRegisterTest {
     trains.add(train1);
     trains.add(train2);
     trains.add(train3);
-    assertEquals(train1.toString(), trains.get(0).toString());
-    assertEquals(train2.toString(), trains.get(1).toString());
-    assertEquals(train3.toString(), trains.get(2).toString());
+    TrainDepartureRegister trainRegister = new TrainDepartureRegister(trains);
+    assertEquals(trains, trainRegister);
   }
 
   @Test
-  void testConstructorNeg() {
+  void testConstructor1Neg() {
     /**
      * Negativ test for konstruktøren. fyll inn.
      */
   }
 
+  @Test
+  void testConstructor2Pos() {
+    
+  }
 
+
+  @Test
+  void testAddTrainDeparturePos() {
+    ArrayList<TrainDeparture> trains = new ArrayList<TrainDeparture>();
+    TrainDeparture train = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
+        "Sandefjord", 3, LocalTime.of(0, 3));
+    trains.add(train);
+    TrainDepartureRegister trainRegister = new TrainDepartureRegister();
+    trainRegister.addTrainDeparture(train);
+    assertEquals(trains, trainRegister);
+  }
 
 }
