@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Test;
 
 /**
- * This is the test class for the program.
+ * This is the test class for the TrainDeparture class.
  */
 
 public class TrainDepartureTest {
