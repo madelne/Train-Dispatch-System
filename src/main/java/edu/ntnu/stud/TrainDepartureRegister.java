@@ -1,7 +1,7 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class is a register that holds all train departures.
@@ -10,14 +10,15 @@ import java.util.ArrayList;
  */
 public class TrainDepartureRegister {
         
-  public ArrayList<TrainDeparture> trainDepartures = new ArrayList<TrainDeparture>();
+  public HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
 
   /**
    * Constructor for class TrainDepartureRegister.
    *
-   * @param trainDepartures An ArrayList that holds train departures.
+   * @param trainDepartures A HashMap that holds the train number as a key and the train departure
+   *     as a value.
    */
-  public TrainDepartureRegister(ArrayList<TrainDeparture> trainDepartures) {
+  public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
     this.trainDepartures = trainDepartures;
   }
 
@@ -25,7 +26,7 @@ public class TrainDepartureRegister {
    * Constructor for class TrainDepartureRegister for empty register.
    */
   public TrainDepartureRegister() {
-    ArrayList<TrainDeparture> trainDepartures = new ArrayList<TrainDeparture>();
+    HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
     this.trainDepartures = trainDepartures;
   }
 
@@ -37,12 +38,7 @@ public class TrainDepartureRegister {
    *
    */
   public void addTrainDeparture(TrainDeparture train) {
-    for (TrainDeparture trainDeparture : trainDepartures) {
-      if (trainDeparture.getTrainNumber() == train.getTrainNumber()) {
-        throw new IllegalArgumentException("The train departure already exists");
-      }
-    } 
-    this.trainDepartures.add(train);
+    trainDepartures.putIfAbsent(train.getTrainNumber(), train);
   }
 
   /**
@@ -52,28 +48,27 @@ public class TrainDepartureRegister {
    * @param trainNumber
    * 
    * @return Returns the trainDeparture with the matching train number.
-   * 
-   * @throws IllegalArgumentException throws exception if the train does not exist. 
+   *
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
-    return trainDepartures.stream().filter(train -> train.getTrainNumber() == trainNumber)
-    .findFirst().orElseThrow(() -> new IllegalArgumentException("Train departure not found"));
+    return trainDepartures.get(trainNumber);
   }
 
   /**
    * This method takes a destination and puts all the trains with this 
-   * destination in an ArrayList.
+   * destination in a HashMap.
    *
    * @param destination
    * 
-   * @return Returns an ArrayList with all the trains going to the given destination.
+   * @return Returns a HashMap with all the trains going to the given destination.
    *     If there are no trains going to the given destination, the method returns an empty 
-   *     ArrayList.
+   *     HashMap.
    */
-  public ArrayList<TrainDeparture> searchByDestination(String destination) {
-    ArrayList<TrainDeparture> trainsWithDestination = new ArrayList<TrainDeparture>();
-    trainDepartures.stream().filter(train -> train.getDestination() == destination)
-    .forEach(train -> trainsWithDestination.add(train));
+  public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
+    HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
+    trainDepartures.entrySet().stream().filter(train -> train.getValue()
+        .getDestination() == destination).forEach(train -> trainsWithDestination
+        .put(train.getKey(), train.getValue()));
     return trainsWithDestination;
   }
 
@@ -82,23 +77,23 @@ public class TrainDepartureRegister {
    * prior to the current time.
    */
   public void removePreviousDepartures() {
-    trainDepartures.stream().filter(train -> train.getDepartureTime().plusHours(
-        train.getDelay().getHour()).plusMinutes(train.getDelay().getMinute())
-        .isAfter(LocalTime.now()));
+    trainDepartures.entrySet().stream().filter(train -> train.getValue().getDepartureTime()
+        .plusHours(train.getValue().getDelay().getHour()).plusMinutes(train.getValue().getDelay()
+        .getMinute()).isAfter(LocalTime.now()));
   }
 
   /**
-   * This method makes an ArrayList with all the train departures sorted by departure time.
+   * This method makes a HashMap with all the train departures sorted by departure time.
    *
-   * @return Returns the sorted ArrayList.
+   * @return Returns the sorted HashMap.
    *
    */
-  public ArrayList<TrainDeparture> sortList() {
-    ArrayList<TrainDeparture> sortertListe = new ArrayList<TrainDeparture>();
-    trainDepartures.stream().sorted((train1, train2) -> (train1.getDepartureTime()
-    .getHour() - train2.getDepartureTime().getHour()) * 100 + (train1.getDepartureTime()
-    .getMinute() - train2.getDepartureTime().getMinute()))
-    .forEach(train -> sortertListe.add(train));
+  public HashMap<Integer, TrainDeparture> sortList() {
+    HashMap<Integer, TrainDeparture> sortertListe = new HashMap<>();
+    trainDepartures.entrySet().stream().sorted((train1, train2) -> (train1.getValue()
+        .getDepartureTime().getHour() - train2.getValue().getDepartureTime().getHour()) * 100 
+        + (train1.getValue().getDepartureTime().getMinute() - train2.getValue().getDepartureTime()
+        .getMinute())).forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
   }
 }

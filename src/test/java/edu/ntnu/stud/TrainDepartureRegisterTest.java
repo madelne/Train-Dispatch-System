@@ -1,10 +1,10 @@
 package edu.ntnu.stud;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +21,10 @@ public class TrainDepartureRegisterTest {
         1007, "Blommenholm", 1);
     TrainDeparture train3 = new TrainDeparture(LocalTime.of(1, 33), "J1", 0101, 
         "Gjøvik", LocalTime.of(0, 15));
-    ArrayList<TrainDeparture> trains = new ArrayList<TrainDeparture>();
-    trains.add(train1);
-    trains.add(train2);
-    trains.add(train3);
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>();
+    trains.put(train1.getTrainNumber(), train1);
+    trains.put(train2.getTrainNumber(), train2);
+    trains.put(train3.getTrainNumber(), train3) ;
     TrainDepartureRegister trainRegister = new TrainDepartureRegister(trains);
     assertEquals(trains, trainRegister);
   }
@@ -44,10 +44,10 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testAddTrainDeparturePos() {
-    ArrayList<TrainDeparture> trains = new ArrayList<TrainDeparture>();
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     TrainDeparture train = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
-    trains.add(train);
+    trains.put(train.getTrainNumber(), train);
     TrainDepartureRegister trainRegister = new TrainDepartureRegister();
     trainRegister.addTrainDeparture(train);
     assertEquals(trains, trainRegister);

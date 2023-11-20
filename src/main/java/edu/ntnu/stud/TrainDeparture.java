@@ -23,6 +23,8 @@ import java.time.LocalTime;
  * 
  * <p>UGYLDIG DATA:
  * ????????????
+ * 
+ * Burde jeg fjerne tognummer som objekt, isåfall hva gjør jeg da???
  *
  * @author Madeleine Negård
  */
@@ -154,6 +156,7 @@ public class TrainDeparture {
     this.trainNumber = trainNumber;
     this.destination = destination;
     this.delay = delay;
+    this.track = -1;
   }
 
 
@@ -187,6 +190,7 @@ public class TrainDeparture {
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
+    this.track = -1;
   }
 
   public LocalTime getDepartureTime() {
