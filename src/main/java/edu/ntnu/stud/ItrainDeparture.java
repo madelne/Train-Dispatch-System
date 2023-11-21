@@ -9,6 +9,10 @@ import java.time.LocalTime;
  */
 public class ItrainDeparture {
 
+  void init() {
+
+  }
+
   void start() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(13, 16), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3));
@@ -19,11 +23,6 @@ public class ItrainDeparture {
     System.out.println(train1.toString());
     System.out.println(train2.toString());
     System.out.println(train3.toString());
-  }
-
-
-  void init() {
-
   }
 
 }

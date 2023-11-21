@@ -3,7 +3,6 @@ package edu.ntnu.stud;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,16 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testConstructor2Pos() {
-    
+    TrainDepartureRegister register = new TrainDepartureRegister();
+    HashMap<Integer, TrainDeparture> emptyHashMap = new HashMap<>();
+    assertEquals(emptyHashMap, register);
+  }
+
+  @Test
+  void testConstructor2Neg() {
+     /**
+     * Negativ test for konstruktøren. fyll inn.
+     */
   }
 
 
@@ -51,6 +59,24 @@ public class TrainDepartureRegisterTest {
     TrainDepartureRegister trainRegister = new TrainDepartureRegister();
     trainRegister.addTrainDeparture(train);
     assertEquals(trains, trainRegister);
+  }
+
+  @Test
+  void testAddTrainDepartureNeg() {
+     /**
+     * Negativ test. Fyll inn.
+     */
+  }
+
+  @Test
+  void testSearchByTrainNumberPos() {
+    TrainDeparture train = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
+        1007, "Blommenholm", 1);
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>();
+    trains.put(train.getTrainNumber(), train);
+    TrainDepartureRegister register = new TrainDepartureRegister(trains);
+    TrainDeparture result = register.searchByTrainNumber(1007);
+    assertEquals(train, result);
   }
 
 }
