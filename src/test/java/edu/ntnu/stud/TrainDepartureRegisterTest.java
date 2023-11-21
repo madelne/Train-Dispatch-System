@@ -79,4 +79,24 @@ public class TrainDepartureRegisterTest {
     assertEquals(train, result);
   }
 
+  @Test
+  void testSearchByDestination() {
+    TrainDeparture train1 = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
+        1007, "Blommenholm", 1);
+    TrainDeparture train2 = new TrainDeparture(LocalTime.of(1, 33), "J1", 0101, 
+        "Gjøvik", LocalTime.of(0, 15));
+    TrainDeparture train3 = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
+        "Blommenholm", 3, LocalTime.of(0, 3));
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>();
+    trains.put(train1.getTrainNumber(), train1);
+    trains.put(train2.getTrainNumber(), train2);
+    trains.put(train3.getTrainNumber(), train3);
+    HashMap<Integer, TrainDeparture> trainsToBlommenholm = new HashMap<>();
+    trainsToBlommenholm.put(train1.getTrainNumber(), train1);
+    trainsToBlommenholm.put(train3.getTrainNumber(), train3);
+    TrainDepartureRegister register = new TrainDepartureRegister(trains);
+    HashMap<Integer, TrainDeparture> result = register.searchByDestination("Blommenholm");
+    assertEquals(trainsToBlommenholm, result);
+  }
+
 }
