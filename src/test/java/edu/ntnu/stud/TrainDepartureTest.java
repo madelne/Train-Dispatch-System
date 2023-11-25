@@ -55,9 +55,9 @@ public class TrainDepartureTest {
     /*0 track should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
         "H", 1, "Oslo", 0, LocalTime.of(0, 5)));
-    /*Null delay should throw IllegalArgumentException*/
+    /*0 delay should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
-        "H", 1, "Oslo", 1, null));
+        "H", 1, "Oslo", 1, LocalTime.of(0, 0)));
   }
     
   @Test
@@ -83,14 +83,19 @@ public class TrainDepartureTest {
 
   @Test
   void testConstructor2Neg() {
+    /*Null departure time should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(null, 
         "H", 1, "Oslo", 1));
+    /*Empty string line should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
         "", 1, "Oslo", 1));
+    /*0 trainnumber should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
         "H", 0, "Oslo", 1));
+    /*Empty string destination should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
         "H", 1, "", 1));
+    /*0 track should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
         "H", 1, "Oslo", 0));
   }
@@ -119,11 +124,21 @@ public class TrainDepartureTest {
 
   @Test
   void testConstructor3Neg() {
-    TrainDeparture train = new TrainDeparture(LocalTime.of(-1, -10), "", -30, "",
-        LocalTime.of(0, -10));
-    /**
-     * bruk assertFalse tror jeg
-     */
+    /*Null departure time should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(null, 
+        "H", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string line should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*0 train number should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 0, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string destination should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "", 1, LocalTime.of(0, 5)));
+    /*0 delay should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "Oslo", 1, LocalTime.of(0, 0)));
 
   }
 
@@ -147,9 +162,17 @@ public class TrainDepartureTest {
 
   @Test 
   void testConstructor4Neg() {
-    TrainDeparture train = new TrainDeparture(LocalTime.of(-1, -10), "", -30, "");
-    /**
-     * bruk assertFalse tror jeg
-     */
+    /*Null departure time should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(null, 
+        "H", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string line should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*0 train number should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 0, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string destination should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "", 1, LocalTime.of(0, 5)));
   }
 }
