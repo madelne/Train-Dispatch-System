@@ -117,13 +117,12 @@ public class TrainDepartureRegisterTest {
         "Lillehammer");   
     TrainDeparture train2 = new TrainDeparture(LocalTime.of(10, 10), "h", 1, "Oslo");
     HashMap<Integer, TrainDeparture> trains = new HashMap<>(); 
-    HashMap<Integer, TrainDeparture> emmptyHashMap = new HashMap<>();
     trains.put(train.getTrainNumber(), train);
     trains.put(train2.getTrainNumber(), train2);
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
-    TrainDepartureRegister register2 = new TrainDepartureRegister(emmptyHashMap);
+    TrainDepartureRegister register2 = new TrainDepartureRegister();
     register.removePreviousDepartures();
-    assertEquals(register2, register);
+    assertEquals(register2.getTrainDepartures(), register.getTrainDepartures());
   }
 
   @Test
