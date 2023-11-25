@@ -81,7 +81,7 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByTrainNumberNeg() {
-        
+
   }
 
   @Test
@@ -128,6 +128,24 @@ public class TrainDepartureRegisterTest {
     /**
      * negativ test.
      */
+  }
+
+  @Test
+  void testSortListPos() {
+    TrainDeparture train1 = new TrainDeparture(LocalTime.of(15, 51), "H1", 66, "Hamar");
+    TrainDeparture train2 = new TrainDeparture(LocalTime.of(13, 14), "M14", 2, "Minsk");
+    TrainDeparture train3 = new TrainDeparture(LocalTime.of(18, 8), "S5", 55, "Stavanger");
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>();
+    trains.put(train1.getTrainNumber(), train1);
+    trains.put(train2.getTrainNumber(), train2);
+    trains.put(train3.getTrainNumber(), train3);
+    TrainDepartureRegister register = new TrainDepartureRegister(trains);
+    register.sortList();
+    HashMap<Integer, TrainDeparture> trainsSorted = new HashMap<>();
+    trainsSorted.put(train2.getTrainNumber(), train2);
+    trainsSorted.put(train1.getTrainNumber(), train1);
+    trainsSorted.put(train3.getTrainNumber(), train3);
+    assertEquals(trainsSorted, register); 
   }
 
 }
