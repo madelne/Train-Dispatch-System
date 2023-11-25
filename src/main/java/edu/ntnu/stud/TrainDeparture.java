@@ -233,6 +233,15 @@ public class TrainDeparture {
 
   @Override
   public String toString() {
+    if (getDelay() == LocalTime.of(0, 0)) {
+      return "{" 
+        + " departureTime='" + getDepartureTime() + "'" 
+        + ", line='" + getLine() + "'" 
+        + ", trainNumber='" + getTrainNumber() + "'" 
+        + ", destination='" + getDestination() + "'" 
+        + ", track='" + getTrack() + "'"  
+        + "}";
+    }
     return "{" 
         + " departureTime='" + getDepartureTime() + "'" 
         + ", line='" + getLine() + "'" 

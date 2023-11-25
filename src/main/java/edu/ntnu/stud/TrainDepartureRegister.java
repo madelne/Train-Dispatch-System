@@ -2,6 +2,8 @@ package edu.ntnu.stud;
 
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * This class is a register that holds all train departures.
@@ -81,9 +83,17 @@ public class TrainDepartureRegister {
    * prior to the current time.
    */
   public void removePreviousDepartures() {
-    trainDepartures.entrySet().stream().filter(train -> train.getValue().getDepartureTime()
-        .plusHours(train.getValue().getDelay().getHour()).plusMinutes(train.getValue().getDelay()
-        .getMinute()).isAfter(LocalTime.now())).toArray();
+    this.trainDepartures = trainDepartures.entrySet().stream()
+      .filter(entry -> {
+        TrainDeparture train = entry.getValue();
+        LocalTime departureTimeWithDelay = train.getDepartureTime()
+            .plusHours(train.getDelay().getHour()).plusMinutes(train.getDelay().getMinute());
+        return departureTimeWithDelay.isAfter(LocalTime.now());
+      })
+      .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), Map.Entry::getValue, 
+        (existing, replacement) -> existing, HashMap::new));
+
+    
   }
 
   /**
@@ -100,7 +110,6 @@ public class TrainDepartureRegister {
         .getMinute())).forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
   }
-
 
 
   @Override
