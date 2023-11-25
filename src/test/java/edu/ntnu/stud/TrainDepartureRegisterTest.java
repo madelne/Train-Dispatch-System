@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -86,7 +87,8 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByTrainNumberNeg() {
-    
+    TrainDepartureRegister register = new TrainDepartureRegister();
+    assertThrows(NoSuchElementException.class, () -> register.searchByTrainNumber(123));
   }
 
   @Test

@@ -3,6 +3,7 @@ package edu.ntnu.stud;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -61,7 +62,7 @@ public class TrainDepartureRegister {
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
     if (trainDepartures.containsKey(trainNumber) == false) {
-      throw new IllegalArgumentException();
+      throw new NoSuchElementException();
     }
     return trainDepartures.get(trainNumber);
   }
