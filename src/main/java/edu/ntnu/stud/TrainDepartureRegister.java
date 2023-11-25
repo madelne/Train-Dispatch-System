@@ -30,7 +30,7 @@ public class TrainDepartureRegister {
     this.trainDepartures = trainDepartures;
   }
 
-  public HashMap<Integer, TrainDeparture> getDepartures() {
+  public HashMap<Integer, TrainDeparture> getTrainDepartures() {
     return this.trainDepartures;
   }
 
@@ -102,7 +102,12 @@ public class TrainDepartureRegister {
   }
 
 
+
+  @Override
+  public String toString() {
+    return "{" 
+      + " trainDepartures='" + getTrainDepartures() + "'" 
+      + "}";
+  }
   
-
-
 }
