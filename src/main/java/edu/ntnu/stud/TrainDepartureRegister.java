@@ -61,8 +61,8 @@ public class TrainDepartureRegister {
    *
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
-    if (trainDepartures.containsKey(trainNumber) == false) {
-      throw new NoSuchElementException();
+    if (trainNumber == 0) {
+      throw new IllegalArgumentException();
     }
     return trainDepartures.get(trainNumber);
   }
@@ -78,6 +78,9 @@ public class TrainDepartureRegister {
    *     HashMap.
    */
   public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
+    if (destination == "") {
+      throw new IllegalArgumentException();
+    }
     HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
     trainDepartures.entrySet().stream()
         .filter(train -> train.getValue().getDestination() == destination)

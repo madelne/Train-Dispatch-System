@@ -88,7 +88,8 @@ public class TrainDepartureRegisterTest {
   @Test
   void testSearchByTrainNumberNeg() {
     TrainDepartureRegister register = new TrainDepartureRegister();
-    assertThrows(NoSuchElementException.class, () -> register.searchByTrainNumber(123));
+    /*0 train number should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> register.searchByTrainNumber(0));
   }
 
   @Test
@@ -113,9 +114,10 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByDestinationNeg() {
-    /**
-     * Negativ test. Fyll inn.
-     */
+    TrainDepartureRegister register = new TrainDepartureRegister();
+    /*Empty string destination should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> register.searchByDestination(""));
+    
   }
 
   @Test
