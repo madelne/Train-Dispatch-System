@@ -79,7 +79,7 @@ public class TrainDepartureRegister {
   public void removePreviousDepartures() {
     trainDepartures.entrySet().stream().filter(train -> train.getValue().getDepartureTime()
         .plusHours(train.getValue().getDelay().getHour()).plusMinutes(train.getValue().getDelay()
-        .getMinute()).isAfter(LocalTime.now()));
+        .getMinute()).isAfter(LocalTime.now())).toArray();
   }
 
   /**
@@ -96,4 +96,6 @@ public class TrainDepartureRegister {
         .getMinute())).forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
   }
+
+
 }

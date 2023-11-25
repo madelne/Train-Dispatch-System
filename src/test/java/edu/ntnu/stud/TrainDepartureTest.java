@@ -2,6 +2,7 @@ package edu.ntnu.stud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 
@@ -39,11 +40,24 @@ public class TrainDepartureTest {
 
   @Test
   void testConstructor1Neg() {
-    TrainDeparture train = new TrainDeparture(LocalTime.of(-1, -10), "",
-        -30, "", -2, LocalTime.of(0, -10));
-    /**
-     * bruk assertFalse tror jeg
-     */
+    /*Null departure time should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(null, 
+        "H", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string line should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "", 1, "Oslo", 1, LocalTime.of(0, 5)));
+    /*0 train number should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 0, "Oslo", 1, LocalTime.of(0, 5)));
+    /*Empty string destination should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "", 1, LocalTime.of(0, 5)));
+    /*0 track should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "Oslo", 0, LocalTime.of(0, 5)));
+    /*Null delay should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "Oslo", 1, null));
   }
     
   @Test
@@ -69,10 +83,16 @@ public class TrainDepartureTest {
 
   @Test
   void testConstructor2Neg() {
-    TrainDeparture train = new TrainDeparture(LocalTime.of(-1, -10), "", -30, "", -2);
-    /**
-     * bruk assertFalse tror jeg
-     */
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(null, 
+        "H", 1, "Oslo", 1));
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "", 1, "Oslo", 1));
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 0, "Oslo", 1));
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "", 1));
+    assertThrows(IllegalArgumentException.class, () -> new TrainDeparture(LocalTime.of(1, 1), 
+        "H", 1, "Oslo", 0));
   }
 
   @Test

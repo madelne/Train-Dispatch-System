@@ -213,8 +213,18 @@ public class TrainDeparture {
     return this.track;
   }
 
+  
+  /** 
+   * Returns the delay. If the delay is null, the method returns 0 minutes and 0 hours.
+   *
+   * @return LocalTime
+   */
   public LocalTime getDelay() {
+    if (this.delay == null) {
+      return LocalTime.of(0, 0);
+    }
     return this.delay;
+    
   }
     
   public void setDelay(LocalTime delay) {
