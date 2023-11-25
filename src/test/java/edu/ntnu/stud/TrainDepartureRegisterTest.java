@@ -86,7 +86,7 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByTrainNumberNeg() {
-
+    
   }
 
   @Test

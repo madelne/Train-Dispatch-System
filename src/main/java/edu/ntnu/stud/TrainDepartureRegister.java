@@ -60,6 +60,9 @@ public class TrainDepartureRegister {
    *
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
+    if (trainDepartures.containsKey(trainNumber) == false) {
+      throw new IllegalArgumentException();
+    }
     return trainDepartures.get(trainNumber);
   }
 
@@ -75,9 +78,9 @@ public class TrainDepartureRegister {
    */
   public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
     HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
-    trainDepartures.entrySet().stream().filter(train -> train.getValue()
-        .getDestination() == destination).forEach(train -> trainsWithDestination
-        .put(train.getKey(), train.getValue()));
+    trainDepartures.entrySet().stream()
+        .filter(train -> train.getValue().getDestination() == destination)
+        .forEach(train -> trainsWithDestination.put(train.getKey(), train.getValue()));
     return trainsWithDestination;
   }
 
@@ -91,9 +94,9 @@ public class TrainDepartureRegister {
         TrainDeparture train = entry.getValue();
         LocalTime departureTimeWithDelay = train.getDepartureTime()
             .plusHours(train.getDelay().getHour()).plusMinutes(train.getDelay().getMinute());
-        return departureTimeWithDelay.isAfter(LocalTime.now());
-      })
-      .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), Map.Entry::getValue, 
+        return departureTimeWithDelay.isAfter(LocalTime.now()); })
+      .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
+        Map.Entry::getValue, 
         (existing, replacement) -> existing, HashMap::new));
 
     
@@ -107,10 +110,13 @@ public class TrainDepartureRegister {
    */
   public HashMap<Integer, TrainDeparture> sortList() {
     HashMap<Integer, TrainDeparture> sortertListe = new HashMap<>();
-    trainDepartures.entrySet().stream().sorted((train1, train2) -> (train1.getValue()
-        .getDepartureTime().getHour() - train2.getValue().getDepartureTime().getHour()) * 100 
-        + (train1.getValue().getDepartureTime().getMinute() - train2.getValue().getDepartureTime()
-        .getMinute())).forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
+    trainDepartures.entrySet().stream()
+    .sorted((train1, train2) -> 
+    (train1.getValue().getDepartureTime().getHour()
+     - train2.getValue().getDepartureTime().getHour()) 
+     * 100 + (train1.getValue().getDepartureTime().getMinute() 
+     * - train2.getValue().getDepartureTime().getMinute()))
+    .forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
   }
 
