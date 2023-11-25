@@ -80,7 +80,12 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSearchByDestination() {
+  void testSearchByTrainNumberNeg() {
+        
+  }
+
+  @Test
+  void testSearchByDestinationPos() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
         1007, "Blommenholm", 1);
     TrainDeparture train2 = new TrainDeparture(LocalTime.of(1, 33), "J1", 0101, 
@@ -97,6 +102,32 @@ public class TrainDepartureRegisterTest {
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
     HashMap<Integer, TrainDeparture> result = register.searchByDestination("Blommenholm");
     assertEquals(trainsToBlommenholm, result);
+  }
+
+  @Test
+  void testSearchByDestinationNeg() {
+    /**
+     * Negativ test. Fyll inn.
+     */
+  }
+
+  @Test
+  void testRemovePreviousDeparturesPos() {
+    TrainDeparture train = new TrainDeparture(LocalTime.now().minusMinutes(1), "T15", 1512, 
+        "Lillehammer");   
+    HashMap<Integer, TrainDeparture> trains = new HashMap<>(); 
+    trains.put(train.getTrainNumber(), train);
+    TrainDepartureRegister register = new TrainDepartureRegister(trains);
+    TrainDepartureRegister register2 = new TrainDepartureRegister();
+    register.removePreviousDepartures();
+    assertEquals(register2, register);
+  }
+
+  @Test
+  void testRemovePreviousDeparturesNeg() {
+    /**
+     * negativ test.
+     */
   }
 
 }
