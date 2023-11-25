@@ -1,6 +1,7 @@
 package edu.ntnu.stud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class TrainDepartureRegisterTest {
     trains.put(train2.getTrainNumber(), train2);
     trains.put(train3.getTrainNumber(), train3) ;
     TrainDepartureRegister trainRegister = new TrainDepartureRegister(trains);
-    assertEquals(trains, trainRegister);
+    assertEquals(trains, trainRegister.getTrainDepartures());
   }
 
   @Test
@@ -63,9 +64,13 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testAddTrainDepartureNeg() {
-     /**
-     * Negativ test. Fyll inn.
-     */
+     TrainDeparture train1 = new TrainDeparture(LocalTime.of(16, 16), "B1", 123, "Oslo");
+     TrainDeparture train2 = new TrainDeparture(LocalTime.of(17, 17), "C2", 123, "Bergen");
+     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
+     trains.put(train1.getTrainNumber(), train1);
+     TrainDepartureRegister register = new TrainDepartureRegister(trains);
+     /*Dublicate train number should throw IllegalArgumentException*/
+     assertThrows(IllegalArgumentException.class, () -> register.addTrainDeparture(train2));
   }
 
   @Test

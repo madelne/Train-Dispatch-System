@@ -44,6 +44,9 @@ public class TrainDepartureRegister {
    *
    */
   public void addTrainDeparture(TrainDeparture train) {
+    if (trainDepartures.containsKey(train.getTrainNumber())) {
+      throw new IllegalArgumentException();
+    }
     trainDepartures.putIfAbsent(train.getTrainNumber(), train);
   }
 
