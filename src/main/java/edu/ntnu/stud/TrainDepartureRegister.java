@@ -30,6 +30,10 @@ public class TrainDepartureRegister {
     this.trainDepartures = trainDepartures;
   }
 
+  public HashMap<Integer, TrainDeparture> getDepartures() {
+    return this.trainDepartures;
+  }
+
   /**
    *This method adds a new train departure to the register. If the train already exists, the method 
    *will throw an exception.
@@ -96,6 +100,9 @@ public class TrainDepartureRegister {
         .getMinute())).forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
   }
+
+
+  
 
 
 }
