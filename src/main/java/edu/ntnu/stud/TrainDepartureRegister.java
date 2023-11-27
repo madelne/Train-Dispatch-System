@@ -22,6 +22,9 @@ public class TrainDepartureRegister {
    *     as a value.
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
+    if (trainDepartures == null) {
+      throw new IllegalArgumentException();
+    }
     this.trainDepartures = trainDepartures;
   }
 

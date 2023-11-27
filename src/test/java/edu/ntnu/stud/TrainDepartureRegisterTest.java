@@ -32,16 +32,15 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testConstructor1Neg() {
-    /**
-     * Negativ test for konstruktøren. fyll inn.
-     */
+    /*Null Hashmap should throw IllegalArgumentException*/
+    assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
   }
 
   @Test
   void testConstructor2Pos() {
     TrainDepartureRegister register = new TrainDepartureRegister();
     HashMap<Integer, TrainDeparture> emptyHashMap = new HashMap<>();
-    assertEquals(emptyHashMap, register);
+    assertEquals(emptyHashMap, register.getTrainDepartures());
   }
 
   @Test
@@ -60,7 +59,7 @@ public class TrainDepartureRegisterTest {
     trains.put(train.getTrainNumber(), train);
     TrainDepartureRegister trainRegister = new TrainDepartureRegister();
     trainRegister.addTrainDeparture(train);
-    assertEquals(trains, trainRegister);
+    assertEquals(trains, trainRegister.getTrainDepartures());
   }
 
   @Test
@@ -151,12 +150,11 @@ public class TrainDepartureRegisterTest {
     trains.put(train2.getTrainNumber(), train2);
     trains.put(train3.getTrainNumber(), train3);
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
-    register.sortList();
     HashMap<Integer, TrainDeparture> trainsSorted = new HashMap<>();
     trainsSorted.put(train2.getTrainNumber(), train2);
     trainsSorted.put(train1.getTrainNumber(), train1);
     trainsSorted.put(train3.getTrainNumber(), train3);
-    assertEquals(trainsSorted, register); 
+    assertEquals(trainsSorted, register.sortList()); 
   }
 
 }
