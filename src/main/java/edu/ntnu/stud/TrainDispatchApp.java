@@ -14,7 +14,7 @@ public class TrainDispatchApp {
    * The main method.
    */
 
-   
+
    void init() {
       TrainDeparture train1 = new TrainDeparture(LocalTime.of(13, 16), "L1", 
           1, "Spikkestad", 4, LocalTime.of(0, 3));
@@ -29,15 +29,22 @@ public class TrainDispatchApp {
       trains.put(train2.getTrainNumber(), train2);
       trains.put(train3.getTrainNumber(), train3);
       trains.put(train4.getTrainNumber(), train4);
-      new TrainDepartureRegister(trains);
+      TrainDepartureRegister register = new TrainDepartureRegister(trains);
     }
   
     void start() {
+      System.out.println("--------------------------------------------");
+      System.out.println("                 Timetable                  ");
+      System.out.println("--------------------------------------------");
+      System.out.println("| Departures    | Line    | Track    |"+LocalTime.now().getHour()+":"+LocalTime.now().getMinute()+"|");
+      System.out.println("--------------------------------------------");
       
     }
   
   public static void main(String[]args) {
-
+    TrainDispatchApp menu = new TrainDispatchApp();
+    menu.init();
+    menu.start();
     
   }
   

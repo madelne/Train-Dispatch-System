@@ -92,6 +92,18 @@ public class TrainDepartureRegister {
   }
 
   /**
+   * This method adds the delay to the original departure time.
+   *
+   * @param train 
+   *
+   * @return Returns the new departure time as a LocalTime value.
+   */
+  public LocalTime departureTimeWithDelay(TrainDeparture train) {
+    return train.getDepartureTime().plusHours(train.getDelay().getHour())
+    .plusMinutes(train.getDelay().getMinute());
+  }
+
+  /**
    * This method removes all trains that have had departure time, including delay, 
    * prior to the current time.
    */
@@ -125,6 +137,19 @@ public class TrainDepartureRegister {
      * - train2.getValue().getDepartureTime().getMinute()))
     .forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
     return sortertListe;
+  }
+
+  /**
+   * This method prints out a timetable for the trainDepartures in the register.
+   */
+  public void printTimeTable() {
+    System.out.println("--------------------------------------------");
+    System.out.println("                 Timetable                  ");
+    System.out.println("--------------------------------------------");
+    System.out.println("| Departures    | Line    | Track    |"
+        + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "|");
+    System.out.println("--------------------------------------------");
+    trainDepartures.entrySet().forEach(train -> System.out.println(train.getValue().getDepartureTime()));
   }
 
 
