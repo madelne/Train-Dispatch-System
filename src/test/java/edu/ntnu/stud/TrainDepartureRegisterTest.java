@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,6 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testConstructor1Neg() {
-    /*Null Hashmap should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
   }
 
