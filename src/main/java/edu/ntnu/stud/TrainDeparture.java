@@ -231,6 +231,16 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
+  /**
+   * This method adds the delay to the original departure time.
+   *
+   * @return Returns the new departure time as a LocalTime value.
+   */
+  public LocalTime departureTimeWithDelay() {
+    return departureTime.plusHours(delay.getHour())
+    .plusMinutes(delay.getMinute());
+  }
+
   @Override
   public String toString() {
     if (getDelay() == LocalTime.of(0, 0)) {

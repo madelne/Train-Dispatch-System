@@ -91,18 +91,7 @@ public class TrainDepartureRegister {
     return trainsWithDestination;
   }
 
-  /**
-   * This method adds the delay to the original departure time.
-   *
-   * @param train 
-   *
-   * @return Returns the new departure time as a LocalTime value.
-   */
-  public LocalTime departureTimeWithDelay(TrainDeparture train) {
-    return train.getDepartureTime().plusHours(train.getDelay().getHour())
-    .plusMinutes(train.getDelay().getMinute());
-  }
-
+  
   /**
    * This method removes all trains that have had departure time, including delay, 
    * prior to the current time.
@@ -111,7 +100,7 @@ public class TrainDepartureRegister {
     this.trainDepartures = trainDepartures.entrySet().stream()
       .filter(entry -> {
         TrainDeparture train = entry.getValue();
-        LocalTime departureTimeWithDelay = departureTimeWithDelay(train);
+        LocalTime departureTimeWithDelay = train.departureTimeWithDelay();
         return departureTimeWithDelay.isAfter(LocalTime.now()); })
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
@@ -148,7 +137,7 @@ public class TrainDepartureRegister {
     System.out.println("| Departures    | Line    | Track    |"
         + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "|");
     System.out.println("--------------------------------------------");
-    trainDepartures.entrySet().forEach(train -> System.out.println(train.getValue().getDepartureTime()));
+    trainDepartures.entrySet().forEach(train -> System.out.println(train.getValue()));
   }
 
 
