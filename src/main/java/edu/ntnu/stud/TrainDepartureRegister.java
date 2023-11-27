@@ -111,8 +111,7 @@ public class TrainDepartureRegister {
     this.trainDepartures = trainDepartures.entrySet().stream()
       .filter(entry -> {
         TrainDeparture train = entry.getValue();
-        LocalTime departureTimeWithDelay = train.getDepartureTime()
-            .plusHours(train.getDelay().getHour()).plusMinutes(train.getDelay().getMinute());
+        LocalTime departureTimeWithDelay = departureTimeWithDelay(train);
         return departureTimeWithDelay.isAfter(LocalTime.now()); })
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
