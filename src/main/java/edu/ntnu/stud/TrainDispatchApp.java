@@ -38,12 +38,28 @@ public class TrainDispatchApp {
    *
    * @return Returns the two numbers as a LocalTime value.
    */
-  public LocalTime timeAsInput() {
+  public LocalTime timeAsInput(String variable) {
+    System.out.println(variable + " in format hh:mm:\n");
     Scanner input = new Scanner(System.in);
     input.useDelimiter(":");
     int departureTimeHours = input.nextInt();
     int departureTimeMinutes = input.nextInt();
     return LocalTime.of(departureTimeHours, departureTimeMinutes);
+  }
+
+  /**
+   * This method takes a variable and asks the user to enter the variable as an input.
+   *
+   * @param variable
+   *
+   * @return Returns the variable as a string.
+   */
+  public String stringAsInput(String variable) {
+    System.out.println(variable + ":");
+    Scanner input = new Scanner(System.in);
+    String stringFromUser = input.nextLine();
+    input.close();
+    return stringFromUser;
   }
 
   public void setTime(LocalTime newTime) {
@@ -73,7 +89,8 @@ public class TrainDispatchApp {
     while (choice != 10) {
       switch (choice) {
         case 1:
-          System.out.println("Departure time in format hh:mm:\n");
+          
+          
           
           break;
       
