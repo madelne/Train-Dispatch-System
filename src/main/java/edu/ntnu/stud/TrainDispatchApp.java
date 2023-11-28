@@ -128,7 +128,7 @@ public class TrainDispatchApp {
   void start() {
     System.out.println("1: Add train departure\n2: Remove train departure\n"
         + "3: Remove all previous departures\n4: Search by train number\n"
-        + "5: Search by destination\n6: Add new register\n7: Add delay\n"
+        + "5: Search by destination\n6: Empty register\n7: Add delay\n"
         + "8: Print updated timetable\n9: Set the current time\n10: Exit");
     Scanner input = new Scanner(System.in);
     int choice = input.nextInt();
@@ -152,7 +152,9 @@ public class TrainDispatchApp {
         case 5:
           System.out.println(register.searchByDestination(stringAsInput("Destination")));
           break;
-        
+        case 6:
+          this.register = new TrainDepartureRegister();
+          break;
         default:
           break;
       }
