@@ -46,6 +46,10 @@ public class TrainDispatchApp {
     return LocalTime.of(departureTimeHours, departureTimeMinutes);
   }
 
+  public void setTime(LocalTime newTime) {
+    this.currenTime = newTime;
+  }
+
   void init() {
     this.currenTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 16), "L1", 
@@ -63,10 +67,10 @@ public class TrainDispatchApp {
     System.out.println("1: Add train departure\n2: Remove train departure\n"
         + "3: Remove all previous departures\n4: Search by train number\n"
         + "5: Search by destination\n6: Add new register\n7: Add delay\n"
-        + "8: Print updated timetable\n9: Exit");
+        + "8: Print updated timetable\n9: Set the current time\n10: Exit");
     Scanner input = new Scanner(System.in);
     int choice = input.nextInt();
-    while (choice != 9) {
+    while (choice != 10) {
       switch (choice) {
         case 1:
           System.out.println("Departure time in format hh:mm:\n");
