@@ -145,7 +145,7 @@ public class TrainDispatchApp {
           register.removeTrainDeparture(input.nextInt());
           break;
         case 3:
-          
+          register.removePreviousDepartures();
         default:
           break;
       }
