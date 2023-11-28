@@ -155,6 +155,9 @@ public class TrainDispatchApp {
         case 6:
           this.register = new TrainDepartureRegister();
           break;
+        case 7:
+          register.trainDepartures.get(integerAsInput("The train departure's train number"))
+              .setDelay(timeAsInput("New delay"));
         default:
           break;
       }
