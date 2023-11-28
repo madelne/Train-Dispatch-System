@@ -104,11 +104,32 @@ public class TrainDispatchApp {
     while (choice != 10) {
       switch (choice) {
         case 1:
-          
-          
-          
+          LocalTime departurTime = timeAsInput("Departure time");
+          String line = stringAsInput("Line");
+          int trainNumber = integerAsInput("Train number");
+          String destination = stringAsInput("Destination");
+          int track = integerAsInput("Track (write 0 if the train departure has no track)");
+          LocalTime delay = timeAsInput("Delay");
+          if (track == 0) {
+            if (delay.equals(LocalTime.of(0, 0))) {
+              register.addTrainDeparture(
+                new TrainDeparture(departurTime, line, trainNumber, destination));
+            } else {
+              register.addTrainDeparture(
+                new TrainDeparture(departurTime, line, trainNumber, destination, delay));
+            }
+          } else {
+            if (delay.equals(LocalTime.of(0, 0))) {
+              register.addTrainDeparture(
+                new TrainDeparture(departurTime, line, trainNumber, destination, track));
+            } else {
+              register.addTrainDeparture(
+                new TrainDeparture(departurTime, line, trainNumber, destination, track, delay));
+            }
+          }
           break;
-      
+        case 2:
+          
         default:
           break;
       }

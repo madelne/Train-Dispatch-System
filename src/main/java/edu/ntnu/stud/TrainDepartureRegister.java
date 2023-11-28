@@ -43,21 +43,31 @@ public class TrainDepartureRegister {
    *This method adds a new train departure to the register. If the train already exists, the method 
    *will throw an exception.
    *
-   * @param train
+   * @param trainDeparture The train departure the user wish to add.
    *
    */
-  public void addTrainDeparture(TrainDeparture train) {
-    if (trainDepartures.containsKey(train.getTrainNumber())) {
+  public void addTrainDeparture(TrainDeparture trainDeparture) {
+    if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
       throw new IllegalArgumentException();
     }
-    trainDepartures.putIfAbsent(train.getTrainNumber(), train);
+    trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
   }
 
   /**
-   * This method takes a train number as a parameter and finds the train with the matching train 
-   * number.
+   * This method removes the traindeparture with the given train number as its key.
    *
-   * @param trainNumber
+   * @param trainNumber The parameter is the train number of 
+   *     the train departure the user wishes to remove.
+   */
+  public void removeTrainDeparture(int trainNumber) {
+    trainDepartures.remove(trainNumber);
+  }
+
+  /**
+   * This method finds the train departure with the matching train number.
+   *
+   * @param trainNumber The parameter is the train number 
+   *     that is used to search through the register.
    * 
    * @return Returns the trainDeparture with the matching train number.
    *
@@ -70,10 +80,10 @@ public class TrainDepartureRegister {
   }
 
   /**
-   * This method takes a destination and puts all the trains with this 
-   * destination in a HashMap.
+   * This method puts all the trains with the given destination in a HashMap.
    *
-   * @param destination
+   * @param destination The parameter is the destination that is used to search 
+   *     through the register.
    * 
    * @return Returns a HashMap with all the trains going to the given destination.
    *     If there are no trains going to the given destination, the method returns an empty 
