@@ -62,6 +62,21 @@ public class TrainDispatchApp {
     return stringFromUser;
   }
 
+  /**
+   * This method takes a variable and asks the user to enter the variable as an integer input.
+   *
+   * @param variable
+   *
+   * @return Returns the variable as an integer.
+   */
+  public int integerAsInput(String variable) {
+    System.out.println(variable + ":");
+    Scanner input = new Scanner(System.in);
+    int intFromUser = input.nextInt();
+    input.close();
+    return intFromUser;
+  }
+
   public void setTime(LocalTime newTime) {
     this.currenTime = newTime;
   }
