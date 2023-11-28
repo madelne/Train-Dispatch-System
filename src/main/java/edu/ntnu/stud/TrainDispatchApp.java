@@ -149,7 +149,10 @@ public class TrainDispatchApp {
         case 4:
           System.out.println(register.searchByTrainNumber(integerAsInput("Train number")));
           break;
-          
+        case 5:
+          System.out.println(register.searchByDestination(stringAsInput("Destination")));
+          break;
+        
         default:
           break;
       }
