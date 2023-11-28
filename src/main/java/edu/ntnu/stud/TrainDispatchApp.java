@@ -22,7 +22,7 @@ public class TrainDispatchApp {
     System.out.println("                     Timetable                       ");
     System.out.println("-----------------------------------------------------");
     System.out.println("| Departures           | Line    | Track    | "
-        + LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()) + " |");
+        + currenTime + " |");
     System.out.println("-----------------------------------------------------");
     register.sortHashMap().entrySet().forEach(train -> 
         System.out.println(String.format("| %-20s | %-7s | %-8d | %5s |", 
@@ -31,6 +31,19 @@ public class TrainDispatchApp {
         train.getValue().getTrack(), 
         train.getValue().departureTimeWithDelay())));
     System.out.println("-----------------------------------------------------");
+  }
+
+  /**
+   * This method takes in two numbers from the user, as hours and minutes.
+   *
+   * @return Returns the two numbers as a LocalTime value.
+   */
+  public LocalTime timeAsInput() {
+    Scanner input = new Scanner(System.in);
+    input.useDelimiter(":");
+    int departureTimeHours = input.nextInt();
+    int departureTimeMinutes = input.nextInt();
+    return LocalTime.of(departureTimeHours, departureTimeMinutes);
   }
 
   void init() {
@@ -57,11 +70,7 @@ public class TrainDispatchApp {
       switch (choice) {
         case 1:
           System.out.println("Departure time in format hh:mm:\n");
-          input.useDelimiter(":");
-          int departureTimeHours = input.nextInt();
-          int departureTimeMinutes = input.nextInt();
           
-
           break;
       
         default:
