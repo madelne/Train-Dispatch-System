@@ -126,25 +126,6 @@ public class TrainDepartureRegister {
     return sortedHashMap;
   }
 
-  /**
-   * This method prints out a timetable for the trainDepartures in the register.
-   */
-  public void printTimeTable() {
-    System.out.println("-----------------------------------------------------");
-    System.out.println("                     Timetable                       ");
-    System.out.println("-----------------------------------------------------");
-    System.out.println("| Departures           | Line    | Track    | "
-        + LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()) + " |");
-    System.out.println("-----------------------------------------------------");
-    trainDepartures.entrySet().forEach(train -> 
-        System.out.println(String.format("| %-20s | %-7s | %-8d | %5s |", 
-        train.getValue().getDestination(),
-        train.getValue().getLine(),
-        train.getValue().getTrack(), 
-        train.getValue().departureTimeWithDelay())));
-    System.out.println("-----------------------------------------------------");
-  }
-
 
   @Override
   public String toString() {
