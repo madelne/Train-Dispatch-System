@@ -48,11 +48,11 @@ public class TrainDispatchApp {
   }
 
   /**
-   * This method takes a variable and asks the user to enter the variable as an input.
+   * This method asks the user to enter an input in the category of the variable.
    *
-   * @param variable
+   * @param variable The paramteter takes a variable that represents the string that is returned.
    *
-   * @return Returns the variable as a string.
+   * @return         Returns the variable as a string.
    */
   public String stringAsInput(String variable) {
     System.out.println(variable + ":");
@@ -63,11 +63,11 @@ public class TrainDispatchApp {
   }
 
   /**
-   * This method takes a variable and asks the user to enter the variable as an integer input.
+   * This method asks the user to enter an input in the category of the variable.
    *
-   * @param variable
+   * @param variable The paramteter takes a variable that represents the integer that is returned.
    *
-   * @return Returns the variable as an integer.
+   * @return         Returns the variable as an integer.
    */
   public int integerAsInput(String variable) {
     System.out.println(variable + ":");
