@@ -18,7 +18,7 @@ public class TrainDepartureRegister {
    * Constructor for class TrainDepartureRegister.
    *
    * @param trainDepartures A HashMap that holds the train number as a key and the train departure
-   *                        as a value.
+   *                        as a value
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
     if (trainDepartures == null) {
@@ -43,12 +43,12 @@ public class TrainDepartureRegister {
    *This method adds a new train departure to the register. If the train already exists, the method 
    *will throw an exception.
    *
-   * @param trainDeparture The train departure the user wish to add.
+   * @param trainDeparture The train departure the user wish to add
    *
    */
   public void addTrainDeparture(TrainDeparture trainDeparture) {
     if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("The train number is already used");
     }
     trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
   }
@@ -57,7 +57,7 @@ public class TrainDepartureRegister {
    * This method removes the traindeparture with the given train number as its key.
    *
    * @param trainNumber The parameter is the train number of 
-   *                    the train departure the user wishes to remove.
+   *                    the train departure the user wishes to remove
    */
   public void removeTrainDeparture(int trainNumber) {
     trainDepartures.remove(trainNumber);
@@ -67,9 +67,9 @@ public class TrainDepartureRegister {
    * This method finds the train departure with the matching train number.
    *
    * @param trainNumber The parameter is the train number 
-   *                    that is used to search through the register.
+   *                    that is used to search through the register
    * 
-   * @return            Returns the trainDeparture with the matching train number.
+   * @return            Returns the trainDeparture with the matching train number
    *
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
@@ -83,11 +83,11 @@ public class TrainDepartureRegister {
    * This method puts all the trains with the given destination in a HashMap.
    *
    * @param destination The parameter is the destination that is used to search 
-   *                    through the register.
+   *                    through the register
    * 
    * @return            Returns a HashMap with all the trains going to the given destination.
    *                    If there are no trains going to the given destination, the method 
-   *                    returns an empty HashMap.
+   *                    returns an empty HashMap
    */
   public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
     if (destination == "") {
@@ -121,7 +121,7 @@ public class TrainDepartureRegister {
   /**
    * This method makes a HashMap with all the train departures sorted by departure time.
    *
-   * @return Returns the sorted HashMap.
+   * @return Returns the sorted HashMap
    *
    */
   public HashMap<Integer, TrainDeparture> sortHashMap() {

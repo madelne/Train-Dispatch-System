@@ -237,7 +237,7 @@ public class TrainDeparture {
   /**
    * This method adds the delay to the original departure time.
    *
-   * @return Returns the new departure time as a LocalTime value.
+   * @return Returns the new departure time as a LocalTime value
    */
   public LocalTime departureTimeWithDelay() {
     return departureTime.plusHours(getDelay().getHour())
