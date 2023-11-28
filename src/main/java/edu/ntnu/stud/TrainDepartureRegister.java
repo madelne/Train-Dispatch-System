@@ -18,7 +18,7 @@ public class TrainDepartureRegister {
    * Constructor for class TrainDepartureRegister.
    *
    * @param trainDepartures A HashMap that holds the train number as a key and the train departure
-   *     as a value.
+   *                        as a value.
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
     if (trainDepartures == null) {
@@ -57,7 +57,7 @@ public class TrainDepartureRegister {
    * This method removes the traindeparture with the given train number as its key.
    *
    * @param trainNumber The parameter is the train number of 
-   *     the train departure the user wishes to remove.
+   *                    the train departure the user wishes to remove.
    */
   public void removeTrainDeparture(int trainNumber) {
     trainDepartures.remove(trainNumber);
@@ -67,9 +67,9 @@ public class TrainDepartureRegister {
    * This method finds the train departure with the matching train number.
    *
    * @param trainNumber The parameter is the train number 
-   *     that is used to search through the register.
+   *                    that is used to search through the register.
    * 
-   * @return Returns the trainDeparture with the matching train number.
+   * @return            Returns the trainDeparture with the matching train number.
    *
    */
   public TrainDeparture searchByTrainNumber(int trainNumber) {
@@ -83,11 +83,11 @@ public class TrainDepartureRegister {
    * This method puts all the trains with the given destination in a HashMap.
    *
    * @param destination The parameter is the destination that is used to search 
-   *     through the register.
+   *                    through the register.
    * 
-   * @return Returns a HashMap with all the trains going to the given destination.
-   *     If there are no trains going to the given destination, the method returns an empty 
-   *     HashMap.
+   * @return            Returns a HashMap with all the trains going to the given destination.
+   *                    If there are no trains going to the given destination, the method 
+   *                    returns an empty HashMap.
    */
   public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
     if (destination == "") {

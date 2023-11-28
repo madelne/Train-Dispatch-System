@@ -217,7 +217,6 @@ public class TrainDeparture {
     this.track = track;
   }
 
-  
   /** 
    * Returns the delay. If the delay is null, the method returns 0 minutes and 0 hours.
    *
