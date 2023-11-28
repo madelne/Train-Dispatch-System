@@ -141,11 +141,15 @@ public class TrainDispatchApp {
               timeAsInput("Delay")));
           break;
         case 2:
-          System.out.println("The train departure's train number:");
-          register.removeTrainDeparture(input.nextInt());
+          register.removeTrainDeparture(integerAsInput("The train departure's train number"));
           break;
         case 3:
           register.removePreviousDepartures();
+          break;
+        case 4:
+          System.out.println(register.searchByTrainNumber(integerAsInput("Train number")));
+          break;
+          
         default:
           break;
       }
