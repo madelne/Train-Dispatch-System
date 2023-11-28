@@ -213,6 +213,10 @@ public class TrainDeparture {
     return this.track;
   }
 
+  public void setTrack(int track) {
+    this.track = track;
+  }
+
   
   /** 
    * Returns the delay. If the delay is null, the method returns 0 minutes and 0 hours.
@@ -237,8 +241,8 @@ public class TrainDeparture {
    * @return Returns the new departure time as a LocalTime value.
    */
   public LocalTime departureTimeWithDelay() {
-    return departureTime.plusHours(delay.getHour())
-    .plusMinutes(delay.getMinute());
+    return departureTime.plusHours(getDelay().getHour())
+    .plusMinutes(getDelay().getMinute());
   }
 
   @Override

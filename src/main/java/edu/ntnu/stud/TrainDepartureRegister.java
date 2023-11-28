@@ -3,7 +3,6 @@ package edu.ntnu.stud;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -115,29 +114,35 @@ public class TrainDepartureRegister {
    * @return Returns the sorted HashMap.
    *
    */
-  public HashMap<Integer, TrainDeparture> sortList() {
-    HashMap<Integer, TrainDeparture> sortertListe = new HashMap<>();
+  public HashMap<Integer, TrainDeparture> sortHashMap() {
+    HashMap<Integer, TrainDeparture> sortedHashMap = new HashMap<>();
     trainDepartures.entrySet().stream()
     .sorted((train1, train2) -> 
     (train1.getValue().getDepartureTime().getHour()
      - train2.getValue().getDepartureTime().getHour()) 
      * 100 + (train1.getValue().getDepartureTime().getMinute() 
      * - train2.getValue().getDepartureTime().getMinute()))
-    .forEach(train -> sortertListe.put(train.getKey(), train.getValue()));
-    return sortertListe;
+    .forEach(train -> sortedHashMap.put(train.getKey(), train.getValue()));
+    return sortedHashMap;
   }
 
   /**
    * This method prints out a timetable for the trainDepartures in the register.
    */
   public void printTimeTable() {
-    System.out.println("--------------------------------------------");
-    System.out.println("                 Timetable                  ");
-    System.out.println("--------------------------------------------");
-    System.out.println("| Departures    | Line    | Track    |"
-        + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "|");
-    System.out.println("--------------------------------------------");
-    trainDepartures.entrySet().forEach(train -> System.out.println(train.getValue()));
+    System.out.println("-----------------------------------------------------");
+    System.out.println("                     Timetable                       ");
+    System.out.println("-----------------------------------------------------");
+    System.out.println("| Departures           | Line    | Track    | "
+        + LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()) + " |");
+    System.out.println("-----------------------------------------------------");
+    trainDepartures.entrySet().forEach(train -> 
+        System.out.println(String.format("| %-20s | %-7s | %-8d | %5s |", 
+        train.getValue().getDestination(),
+        train.getValue().getLine(),
+        train.getValue().getTrack(), 
+        train.getValue().departureTimeWithDelay())));
+    System.out.println("-----------------------------------------------------");
   }
 
 

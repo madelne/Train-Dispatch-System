@@ -139,7 +139,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSortListPos() {
+  void testSortHashMapPos() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.of(15, 51), "H1", 66, "Hamar");
     TrainDeparture train2 = new TrainDeparture(LocalTime.of(13, 14), "M14", 2, "Minsk");
     TrainDeparture train3 = new TrainDeparture(LocalTime.of(18, 8), "S5", 55, "Stavanger");
@@ -152,7 +152,8 @@ public class TrainDepartureRegisterTest {
     trains.put(train2.getTrainNumber(), train2);
     trains.put(train3.getTrainNumber(), train3);
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
-    assertEquals(trainsSorted, register.sortList()); 
+    HashMap<Integer, TrainDeparture> sortedRegister = register.sortHashMap();
+    assertEquals(trainsSorted, sortedRegister); 
   }
 
 }
