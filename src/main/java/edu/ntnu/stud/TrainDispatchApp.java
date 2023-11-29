@@ -1,7 +1,6 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -40,11 +39,18 @@ public class TrainDispatchApp {
   public LocalTime timeAsInput(String variable) {
     System.out.println(variable + " hour:");
     Scanner input = new Scanner(System.in);
-    int departureTimeHours = Integer.parseInt(input.nextLine());
+    String departureTimeHours = input.nextLine();
+    while (validateIntegerInput(departureTimeHours, 23, 0) == false) {
+      departureTimeHours = input.nextLine();
+    }
     System.out.println(variable + " minutes:");
-    int departureTimeMinutes = Integer.parseInt(input.nextLine());
-    return LocalTime.of(departureTimeHours, departureTimeMinutes);
+    String departureTimeMinutes = input.nextLine();
+    while (validateIntegerInput(departureTimeMinutes, 59, 0) == false) {
+      departureTimeMinutes = input.nextLine();
+    } 
+    return LocalTime.of(Integer.valueOf(departureTimeHours), Integer.valueOf(departureTimeMinutes));
   }
+
 
   /**
    * This method asks the user to enter an input in the category of the variable.
@@ -72,6 +78,24 @@ public class TrainDispatchApp {
     Scanner input = new Scanner(System.in);
     int intFromUser = Integer.parseInt(input.nextLine());
     return intFromUser;
+  }
+
+  /**
+   * 
+   */
+  public boolean validateIntegerInput(String input, int maximum, int minimum) {
+    boolean valid = false;
+    try {
+      int i = Integer.parseInt(input);
+      if (i <= maximum && i >= minimum) {
+        valid = true;
+      } else {
+        System.out.println("Must be a number between " + minimum + " and " + maximum);
+      }
+    } catch (NumberFormatException numberFormatException) {
+      System.out.println("Must be a number between " + minimum + " and " + maximum);
+    }
+    return valid;
   }
 
   

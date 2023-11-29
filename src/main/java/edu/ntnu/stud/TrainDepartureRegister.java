@@ -33,7 +33,7 @@ public class TrainDepartureRegister {
   public TrainDepartureRegister() {
     HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
     this.trainDepartures = trainDepartures;
-    this.currentTime = LocalTime.now();
+    this.currentTime = LocalTime.now().withSecond(0).withNano(0);
   }
 
   public HashMap<Integer, TrainDeparture> getTrainDepartures() {
