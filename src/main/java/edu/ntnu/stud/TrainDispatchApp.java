@@ -66,14 +66,18 @@ public class TrainDispatchApp {
    * This method asks the user to enter an input in the category of the variable.
    *
    * @param variable The paramteter takes a variable that represents the integer that is returned
+   * 
+   * @param max      The maximum value limit
+   * 
+   * @param min      The minimum value limit
    *
    * @return         Returns the variable as an integer
    */
-  public int integerAsInput(String variable) {
+  public int integerAsInput(String variable, int max, int min) {
     System.out.println(variable + ":");
     Scanner input = new Scanner(System.in);
-
-    int intFromUser = Integer.parseInt(input.nextLine());
+    String stringFromUser = input.nextLine();
+    int intFromUser = validateIntegerInput(stringFromUser, 1000, 0);
     return intFromUser;
   }
 
@@ -81,33 +85,59 @@ public class TrainDispatchApp {
    * This method prints out a message if the input is not a number between the given 
    * maximum and minimum and asks for a new input.
    *
-   * @param value   The value is the input from the user
+   * @param value The value is the input from the user
    * 
-   * @param maximum The maximum limit
+   * @param max   The maximum value limit
    * 
-   * @param minimum The minimum limit
+   * @param min   The minimum value limit
    * 
-   * @return        This method returns the number as an integer when 
-   *                it is a number between the given maximum and minimum
+   * @return      The method returns the first valid input given by the user
    */
-  public int validateIntegerInput(String value, int maximum, int minimum) {
+  public int validateIntegerInput(String value, int max, int min) {
     Scanner input = new Scanner(System.in);
     boolean valid = false;
-    int i = 0;
+    int validNumber = 0;
     while (valid == false) {
       try {
-        i = Integer.parseInt(value);
-        if (i <= maximum && i >= minimum) {
+        validNumber = Integer.parseInt(value);
+        if (validNumber <= max && validNumber >= min) {
           valid = true;
         } else {
-          System.out.println("Must be a number between " + minimum + " and " + maximum);
+          System.out.println("Must be a number between " + min + " and " + max 
+              + ". Please try again:");
         }
       } catch (NumberFormatException numberFormatException) {
-        System.out.println("Must be a number between " + minimum + " and " + maximum);
+        System.out.println("Must be a number between " + min + " and " + max
+            + ". Please try again:");
       }
       value = input.nextLine();
     }
-    return i;
+    return validNumber;
+  }
+
+  /**
+   * This method asks for a new input if the parameter value has a number of characters over
+   * the given maximum.
+   *
+   * @param value         The string input from the user
+   *
+   * @param maxCharacters The maximum number of characters
+   *
+   * @return              The method returns the first valid input given by the user
+   */
+  public String validateStringInput(String value, int maxCharacters) {
+    Scanner input = new Scanner(System.in);
+    boolean valid = false;
+    while (valid == false) {
+      if (value.length() < maxCharacters) {
+        valid = true;
+      } else {
+        System.out.println("Number of characters is over the limit."  
+            + "Please enter a string with a maximum of " + maxCharacters + "letters:");
+        value = input.nextLine();
+      }
+    }
+    return value;
   }
 
   
@@ -168,18 +198,20 @@ public class TrainDispatchApp {
       switch (choice) {
         case 1:
           register.addTrainDeparture(chooseTrainDepartureConstructor(timeAsInput("Departure time"), 
-              stringAsInput("Line"), integerAsInput("Train number"), stringAsInput("Destination"), 
-              integerAsInput("Track (write 0 if the train departure has no track)"), 
+              stringAsInput("Line"), integerAsInput("Train number", 1000, 0), 
+              stringAsInput("Destination"), 
+              integerAsInput("Track (write 0 if the train departure has no track)", 100, 0), 
               timeAsInput("Delay")));
           break;
         case 2:
-          register.removeTrainDeparture(integerAsInput("The train departure's train number"));
+          register.removeTrainDeparture(integerAsInput(
+              "The train departure's train number", 1000, 0));
           break;
         case 3:
           register.removePreviousDepartures();
           break;
         case 4:
-          System.out.println(register.searchByTrainNumber(integerAsInput("Train number")));
+          System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 1000, 0)));
           break;
         case 5:
           System.out.println(register.searchByDestination(stringAsInput("Destination")));
@@ -188,7 +220,8 @@ public class TrainDispatchApp {
           this.register = new TrainDepartureRegister();
           break;
         case 7:
-          register.trainDepartures.get(integerAsInput("The train departure's train number"))
+          register.trainDepartures.get(integerAsInput(
+              "The train departure's train number", 1000, 0))
               .setDelay(timeAsInput("New delay"));
           break;
         case 8:
