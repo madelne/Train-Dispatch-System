@@ -23,8 +23,8 @@ public class TrainDepartureRegister {
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
     this.currentTime = LocalTime.now();
-    
     this.trainDepartures = trainDepartures;
+    validateTrainDepartureRegister();
   }
 
   /**
@@ -143,15 +143,21 @@ public class TrainDepartureRegister {
 
   /**
    * This method throws an IllegalArgumentExceptin if the train 
-   * register is null or if one of the trains has left the station.
+   * register is null. If the departure time is prior to the current time, 
+   * the method prints out a message and removes the train departure from the register.
    */
   public void validateTrainDepartureRegister() {
     if (trainDepartures == null) {
       throw new IllegalArgumentException();
     }
     trainDepartures.entrySet()
+        .forEach(trainDeparture ->
+          trainDeparture.getValue().validateTrainDeparture(currentTime));
+    trainDepartures.entrySet().stream()
+        .filter(trainDeparture -> 
+          trainDeparture.getValue().departureTimeWithDelay().isBefore(currentTime))
         .forEach(trainDeparture -> 
-        trainDeparture.getValue().validateTrainDeparture(currentTime));
+          removeTrainDeparture(trainDeparture.getKey()));
   }
 
   public LocalTime getCurrentTime() {

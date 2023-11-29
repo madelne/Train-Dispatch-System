@@ -245,13 +245,13 @@ public class TrainDeparture {
   }
 
   /**
-   * This method throws an IllegalArgumentException if the train has left the station.
+   * This method prints out a message if the departure time is prior to the current time.
    *
    * @param currenTime The parameter is the current time.
    */
   public void validateTrainDeparture(LocalTime currenTime) {
     if (departureTimeWithDelay().isBefore(currenTime) == false) {
-      throw new IllegalArgumentException("The train has left the station.");
+      System.out.println(trainNumber + " has left the station and was not added to the register");
     }
   }
 
