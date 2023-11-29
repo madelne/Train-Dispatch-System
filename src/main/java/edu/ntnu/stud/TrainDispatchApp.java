@@ -22,12 +22,18 @@ public class TrainDispatchApp {
     System.out.println("| Departures           | Line    | Track    | "
         + register.getCurrentTime() + " |");
     System.out.println("-----------------------------------------------------");
-    register.sortHashMap().entrySet().forEach(train -> 
-        System.out.println(String.format("| %-20s | %-7s | %-8d | %5s |", 
-        train.getValue().getDestination(),
-        train.getValue().getLine(),
-        train.getValue().getTrack(), 
-        train.getValue().departureTimeWithDelay())));
+    register.sortHashMap().entrySet().forEach(train -> {
+      String track = String.valueOf(train.getValue().getTrack());
+      if (train.getValue().getTrack() == -1) {
+        track = "";
+      }
+      System.out.println(String.format("| %-20s | %-7s | %-8s | %5s |", 
+          train.getValue().getDestination(),
+          train.getValue().getLine(),
+          track, 
+          train.getValue().departureTimeWithDelay()));  
+        }
+    );
     System.out.println("-----------------------------------------------------");
   }
 
@@ -55,11 +61,12 @@ public class TrainDispatchApp {
    *
    * @return         Returns the variable as a string
    */
-  public String stringAsInput(String variable) {
+  public String stringAsInput(String variable, int maxCharacters) {
     System.out.println(variable + ":");
     Scanner input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
-    return stringFromUser;
+    String validString = validateStringInput(stringFromUser, maxCharacters);
+    return validString;
   }
 
   /**
@@ -77,7 +84,7 @@ public class TrainDispatchApp {
     System.out.println(variable + ":");
     Scanner input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
-    int intFromUser = validateIntegerInput(stringFromUser, 1000, 0);
+    int intFromUser = validateIntegerInput(stringFromUser, max, min);
     return intFromUser;
   }
 
@@ -105,12 +112,13 @@ public class TrainDispatchApp {
         } else {
           System.out.println("Must be a number between " + min + " and " + max 
               + ". Please try again:");
+          value = input.nextLine();
         }
       } catch (NumberFormatException numberFormatException) {
         System.out.println("Must be a number between " + min + " and " + max
             + ". Please try again:");
+        value = input.nextLine();
       }
-      value = input.nextLine();
     }
     return validNumber;
   }
@@ -198,8 +206,8 @@ public class TrainDispatchApp {
       switch (choice) {
         case 1:
           register.addTrainDeparture(chooseTrainDepartureConstructor(timeAsInput("Departure time"), 
-              stringAsInput("Line"), integerAsInput("Train number", 1000, 0), 
-              stringAsInput("Destination"), 
+              stringAsInput("Line", 8), integerAsInput("Train number", 1000, 0), 
+              stringAsInput("Destination", 21), 
               integerAsInput("Track (write 0 if the train departure has no track)", 100, 0), 
               timeAsInput("Delay")));
           break;
@@ -214,7 +222,7 @@ public class TrainDispatchApp {
           System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 1000, 0)));
           break;
         case 5:
-          System.out.println(register.searchByDestination(stringAsInput("Destination")));
+          System.out.println(register.searchByDestination(stringAsInput("Destination", 21)));
           break;
         case 6:
           this.register = new TrainDepartureRegister();
