@@ -92,12 +92,13 @@ public class TrainDepartureRegister {
   public HashMap<Integer, TrainDeparture> searchByDestination(String destination) {
     if (destination == "") {
       throw new IllegalArgumentException();
-    }
-    HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
-    trainDepartures.entrySet().stream()
-        .filter(train -> train.getValue().getDestination() == destination)
+    } else {
+      HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
+      trainDepartures.entrySet().stream()
+        .filter(train -> train.getValue().getDestination().equals(destination))
         .forEach(train -> trainsWithDestination.put(train.getKey(), train.getValue()));
-    return trainsWithDestination;
+      return trainsWithDestination;
+    }
   }
 
   

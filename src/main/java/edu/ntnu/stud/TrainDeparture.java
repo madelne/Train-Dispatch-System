@@ -61,13 +61,13 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not be empty");
     }
-    if (trainNumber <= 0) {
+    if (trainNumber <= 0 && trainNumber > 100) {
       throw new IllegalArgumentException("The train number can not be 0 or under");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0) {
+    if (track <= 0 && track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
     if (delay == LocalTime.of(0, 0)) {
@@ -104,13 +104,13 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0) {
+    if (trainNumber <= 0 && trainNumber > 100) {
       throw new IllegalArgumentException("The train number can not be 0 or under");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0) {
+    if (track <= 0 && track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
     this.departureTime = departureTime;
@@ -142,7 +142,7 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0) {
+    if (trainNumber <= 0 && trainNumber > 100) {
       throw new IllegalArgumentException("The train number can not be 0 or under");
     }
     if (destination == "") {
@@ -180,7 +180,7 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0) {
+    if (trainNumber <= 0 && trainNumber > 100) {
       throw new IllegalArgumentException("The train number can not be 0 or under");
     }
     if (destination == "") {

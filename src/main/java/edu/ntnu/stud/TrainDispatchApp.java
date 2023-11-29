@@ -162,6 +162,9 @@ public class TrainDispatchApp {
         case 8:
           printTimeTable();
           break;
+        case 9:
+          setTime(timeAsInput("Set current time"));
+          break;
         default:
           break;
       }
