@@ -39,16 +39,12 @@ public class TrainDispatchApp {
   public LocalTime timeAsInput(String variable) {
     System.out.println(variable + " hour:");
     Scanner input = new Scanner(System.in);
-    String departureTimeHours = input.nextLine();
-    while (validateIntegerInput(departureTimeHours, 23, 0) == false) {
-      departureTimeHours = input.nextLine();
-    }
+    String departureTimeHoursString = input.nextLine();
+    int departureTimeHours = validateIntegerInput(departureTimeHoursString, 23, 0);
     System.out.println(variable + " minutes:");
-    String departureTimeMinutes = input.nextLine();
-    while (validateIntegerInput(departureTimeMinutes, 59, 0) == false) {
-      departureTimeMinutes = input.nextLine();
-    } 
-    return LocalTime.of(Integer.valueOf(departureTimeHours), Integer.valueOf(departureTimeMinutes));
+    String departureTimeMinutesString = input.nextLine();
+    int departureTimeMinutes = validateIntegerInput(departureTimeMinutesString, 59, 0);
+    return LocalTime.of(departureTimeHours, departureTimeMinutes);
   }
 
 
@@ -76,26 +72,42 @@ public class TrainDispatchApp {
   public int integerAsInput(String variable) {
     System.out.println(variable + ":");
     Scanner input = new Scanner(System.in);
+
     int intFromUser = Integer.parseInt(input.nextLine());
     return intFromUser;
   }
 
   /**
+   * This method prints out a message if the input is not a number between the given 
+   * maximum and minimum and asks for a new input.
+   *
+   * @param value   The value is the input from the user
    * 
+   * @param maximum The maximum limit
+   * 
+   * @param minimum The minimum limit
+   * 
+   * @return        This method returns the number as an integer when 
+   *                it is a number between the given maximum and minimum
    */
-  public boolean validateIntegerInput(String input, int maximum, int minimum) {
+  public int validateIntegerInput(String value, int maximum, int minimum) {
+    Scanner input = new Scanner(System.in);
     boolean valid = false;
-    try {
-      int i = Integer.parseInt(input);
-      if (i <= maximum && i >= minimum) {
-        valid = true;
-      } else {
+    int i = 0;
+    while (valid == false) {
+      try {
+        i = Integer.parseInt(value);
+        if (i <= maximum && i >= minimum) {
+          valid = true;
+        } else {
+          System.out.println("Must be a number between " + minimum + " and " + maximum);
+        }
+      } catch (NumberFormatException numberFormatException) {
         System.out.println("Must be a number between " + minimum + " and " + maximum);
       }
-    } catch (NumberFormatException numberFormatException) {
-      System.out.println("Must be a number between " + minimum + " and " + maximum);
+      value = input.nextLine();
     }
-    return valid;
+    return i;
   }
 
   
