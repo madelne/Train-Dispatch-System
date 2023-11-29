@@ -30,10 +30,10 @@ import java.time.LocalTime;
  */
 public class TrainDeparture {
 
-  private LocalTime departureTime;
-  private String line;
-  private int trainNumber;
-  private String destination;
+  private final LocalTime departureTime;
+  private final String line;
+  private final int trainNumber;
+  private final String destination;
   private int track;
   private LocalTime delay;
 
@@ -213,7 +213,7 @@ public class TrainDeparture {
     return this.track;
   }
 
-  public void setTrack(int track) {
+  private void setTrack(int track) {
     this.track = track;
   }
 
@@ -242,6 +242,17 @@ public class TrainDeparture {
   public LocalTime departureTimeWithDelay() {
     return departureTime.plusHours(getDelay().getHour())
     .plusMinutes(getDelay().getMinute());
+  }
+
+  /**
+   * This method throws an IllegalArgumentException if the train has left the station.
+   *
+   * @param currenTime The parameter is the current time.
+   */
+  public void validateTrainDeparture(LocalTime currenTime) {
+    if (departureTimeWithDelay().isBefore(currenTime) == false) {
+      throw new IllegalArgumentException("The train has left the station.");
+    }
   }
 
   @Override

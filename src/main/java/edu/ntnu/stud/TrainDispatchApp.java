@@ -11,8 +11,7 @@ import java.util.Scanner;
  */
 public class TrainDispatchApp {
 
-  TrainDepartureRegister register = new TrainDepartureRegister();
-  LocalTime currentTime;
+  public TrainDepartureRegister register = new TrainDepartureRegister();
 
   /**
    * This method prints out a timetable for the trainDepartures in the register.
@@ -22,7 +21,7 @@ public class TrainDispatchApp {
     System.out.println("                     Timetable                       ");
     System.out.println("-----------------------------------------------------");
     System.out.println("| Departures           | Line    | Track    | "
-        + currentTime + " |");
+        + register.getCurrentTime() + " |");
     System.out.println("-----------------------------------------------------");
     register.sortHashMap().entrySet().forEach(train -> 
         System.out.println(String.format("| %-20s | %-7s | %-8d | %5s |", 
@@ -75,8 +74,8 @@ public class TrainDispatchApp {
     return intFromUser;
   }
 
-  public void setTime(LocalTime newTime) {
-    this.currentTime = newTime;
+  private void setCurrentTime(LocalTime newTime) {
+    register.currentTime = newTime;
   }
 
   /**
@@ -113,7 +112,7 @@ public class TrainDispatchApp {
   }
 
   void init() {
-    this.currentTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+    register.currentTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 16), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3)));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(14, 14), "L13", 
@@ -163,7 +162,7 @@ public class TrainDispatchApp {
           printTimeTable();
           break;
         case 9:
-          setTime(timeAsInput("Set current time"));
+          setCurrentTime(timeAsInput("Set current time"));
           break;
         default:
           break;

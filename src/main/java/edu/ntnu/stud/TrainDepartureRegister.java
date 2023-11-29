@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class TrainDepartureRegister {
         
   public HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
+  public LocalTime currentTime;
 
   /**
    * Constructor for class TrainDepartureRegister.
@@ -21,9 +22,8 @@ public class TrainDepartureRegister {
    *                        as a value
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
-    if (trainDepartures == null) {
-      throw new IllegalArgumentException();
-    }
+    this.currentTime = LocalTime.now();
+    
     this.trainDepartures = trainDepartures;
   }
 
@@ -33,6 +33,7 @@ public class TrainDepartureRegister {
   public TrainDepartureRegister() {
     HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
     this.trainDepartures = trainDepartures;
+    this.currentTime = LocalTime.now();
   }
 
   public HashMap<Integer, TrainDeparture> getTrainDepartures() {
@@ -50,6 +51,7 @@ public class TrainDepartureRegister {
     if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
       throw new IllegalArgumentException("The train number is already used");
     }
+    trainDeparture.validateTrainDeparture(currentTime);
     trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
   }
 
@@ -95,8 +97,9 @@ public class TrainDepartureRegister {
     } else {
       HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
       trainDepartures.entrySet().stream()
-        .filter(train -> train.getValue().getDestination().equals(destination))
-        .forEach(train -> trainsWithDestination.put(train.getKey(), train.getValue()));
+          .filter(trainDeparture -> trainDeparture.getValue().getDestination().equals(destination))
+          .forEach(trainDeparture -> trainsWithDestination.put(trainDeparture.getKey(), 
+          trainDeparture.getValue()));
       return trainsWithDestination;
     }
   }
@@ -109,8 +112,8 @@ public class TrainDepartureRegister {
   public void removePreviousDepartures() {
     this.trainDepartures = trainDepartures.entrySet().stream()
       .filter(entry -> {
-        TrainDeparture train = entry.getValue();
-        LocalTime departureTimeWithDelay = train.departureTimeWithDelay();
+        TrainDeparture trainDeparture = entry.getValue();
+        LocalTime departureTimeWithDelay = trainDeparture.departureTimeWithDelay();
         return departureTimeWithDelay.isAfter(LocalTime.now()); })
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
@@ -128,13 +131,20 @@ public class TrainDepartureRegister {
   public HashMap<Integer, TrainDeparture> sortHashMap() {
     HashMap<Integer, TrainDeparture> sortedHashMap = new HashMap<>();
     trainDepartures.entrySet().stream()
-    .sorted((train1, train2) -> 
-    (train1.getValue().getDepartureTime().getHour()
-     - train2.getValue().getDepartureTime().getHour()) 
-     * 100 + (train1.getValue().getDepartureTime().getMinute() 
-     * - train2.getValue().getDepartureTime().getMinute()))
-    .forEach(train -> sortedHashMap.put(train.getKey(), train.getValue()));
+        .sorted((trainDeparture1, trainDeparture2) -> 
+        (trainDeparture1.getValue().getDepartureTime().getHour()
+        - trainDeparture2.getValue().getDepartureTime().getHour()) 
+        * 100 + (trainDeparture1.getValue().getDepartureTime().getMinute() 
+        * - trainDeparture2.getValue().getDepartureTime().getMinute()))
+        .forEach(trainDeparture -> sortedHashMap.put(trainDeparture.getKey(), 
+        trainDeparture.getValue()));
     return sortedHashMap;
+  }
+
+  
+
+  public LocalTime getCurrentTime() {
+    return currentTime;
   }
 
 
