@@ -61,19 +61,19 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not be empty");
     }
-    if (trainNumber <= 0 && trainNumber > 100) {
-      throw new IllegalArgumentException("The train number can not be 0 or under");
+    if (trainNumber <= 0 || trainNumber > 1000) {
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0 && track > 100) {
+    if (track <= 0 || track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
     if (delay == LocalTime.of(0, 0)) {
       throw new IllegalArgumentException("The delay can not be 0");
     }
-    this.departureTime = departureTime;
+    this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
@@ -104,16 +104,16 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0 && trainNumber > 100) {
-      throw new IllegalArgumentException("The train number can not be 0 or under");
+    if (trainNumber <= 0 || trainNumber > 1000) {
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0 && track > 100) {
+    if (track <= 0 || track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
-    this.departureTime = departureTime;
+    this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
@@ -142,8 +142,8 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0 && trainNumber > 100) {
-      throw new IllegalArgumentException("The train number can not be 0 or under");
+    if (trainNumber <= 0 || trainNumber > 1000) {
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
@@ -151,12 +151,12 @@ public class TrainDeparture {
     if (delay == LocalTime.of(0, 0)) {
       throw new IllegalArgumentException("The delay can not be 0");
     }
-    this.departureTime = departureTime;
+    this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
     this.delay = delay;
-    this.track = -1;
+    setTrack(-1);
   }
 
 
@@ -180,17 +180,17 @@ public class TrainDeparture {
     if (line == "") {
       throw new IllegalArgumentException("The line can not empty");
     }
-    if (trainNumber <= 0 && trainNumber > 100) {
-      throw new IllegalArgumentException("The train number can not be 0 or under");
+    if (trainNumber <= 0 || trainNumber > 1000) {
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
     }
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    this.departureTime = departureTime;
+    this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
-    this.track = -1;
+    setTrack(-1);
   }
 
   public LocalTime getDepartureTime() {
@@ -259,7 +259,8 @@ public class TrainDeparture {
   public String toString() {
     if (getDelay() == LocalTime.of(0, 0)) {
       return "{" 
-        + " departureTime='" + getDepartureTime() + "'" 
+        + " departureTime='" + getDepartureTime().getHour() + ":" 
+        + getDepartureTime().getMinute() + "'" 
         + ", line='" + getLine() + "'" 
         + ", trainNumber='" + getTrainNumber() + "'" 
         + ", destination='" + getDestination() + "'" 
@@ -267,7 +268,8 @@ public class TrainDeparture {
         + "}";
     }
     return "{" 
-        + " departureTime='" + getDepartureTime() + "'" 
+        + " departureTime='" + getDepartureTime().getHour() + ":"
+        + getDepartureTime().getMinute() + "'" 
         + ", line='" + getLine() + "'" 
         + ", trainNumber='" + getTrainNumber() + "'" 
         + ", destination='" + getDestination() + "'" 

@@ -15,11 +15,11 @@ public class TrainDepartureRegisterTest {
   
   @Test
   void testConstructor1Pos() {
-    TrainDeparture train1 = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
+    TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusHours(3), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
-    TrainDeparture train2 = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
-        1007, "Blommenholm", 1);
-    TrainDeparture train3 = new TrainDeparture(LocalTime.of(1, 33), "J1", 0101, 
+    TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusMinutes(3), "OD10", 
+        100, "Blommenholm", 1);
+    TrainDeparture train3 = new TrainDeparture(LocalTime.now().plusMinutes(30), "J1", 0101, 
         "Gjøvik", LocalTime.of(0, 15));
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     trains.put(train1.getTrainNumber(), train1);
@@ -62,8 +62,8 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testAddTrainDepartureNeg() {
-    TrainDeparture train1 = new TrainDeparture(LocalTime.of(16, 16), "B1", 123, "Oslo");
-    TrainDeparture train2 = new TrainDeparture(LocalTime.of(17, 17), "C2", 123, "Bergen");
+    TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(5), "B1", 123, "Oslo");
+    TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusMinutes(4), "C2", 123, "Bergen");
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     trains.put(train1.getTrainNumber(), train1);
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
@@ -73,12 +73,12 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByTrainNumberPos() {
-    TrainDeparture train = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
-        1007, "Blommenholm", 1);
+    TrainDeparture train = new TrainDeparture(LocalTime.now().plusHours(4), "OD10", 
+        100, "Blommenholm", 1);
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     trains.put(train.getTrainNumber(), train);
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
-    TrainDeparture result = register.searchByTrainNumber(1007);
+    TrainDeparture result = register.searchByTrainNumber(100);
     assertEquals(train, result);
   }
 
@@ -91,11 +91,11 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSearchByDestinationPos() {
-    TrainDeparture train1 = new TrainDeparture(LocalTime.of(16, 7), "OD10", 
-        1007, "Blommenholm", 1);
-    TrainDeparture train2 = new TrainDeparture(LocalTime.of(1, 33), "J1", 0101, 
+    TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(5), "OD10", 
+        100, "Blommenholm", 1);
+    TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "J1", 010, 
         "Gjøvik", LocalTime.of(0, 15));
-    TrainDeparture train3 = new TrainDeparture(LocalTime.of(15, 17), "C3", 30, 
+    TrainDeparture train3 = new TrainDeparture(LocalTime.now().plusHours(2), "C3", 30, 
         "Blommenholm", 3, LocalTime.of(0, 3));
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     trains.put(train1.getTrainNumber(), train1);
@@ -119,14 +119,15 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testRemovePreviousDeparturesPos() {
-    TrainDeparture train = new TrainDeparture(LocalTime.now().minusMinutes(1), "T15", 1512, 
+    TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(3), "T15", 15, 
         "Lillehammer");   
-    TrainDeparture train2 = new TrainDeparture(LocalTime.of(10, 10), "h", 1, "Oslo");
-    HashMap<Integer, TrainDeparture> trains = new HashMap<>(); 
-    trains.put(train.getTrainNumber(), train);
-    trains.put(train2.getTrainNumber(), train2);
-    TrainDepartureRegister register = new TrainDepartureRegister(trains);
+    TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "h", 1, "Oslo");
+    TrainDepartureRegister register = new TrainDepartureRegister();
     TrainDepartureRegister register2 = new TrainDepartureRegister();
+    register.addTrainDeparture(train1);
+    register.addTrainDeparture(train2);
+    register2.addTrainDeparture(train2);
+    register.setCurrentTime(LocalTime.now().plusMinutes(10));
     register.removePreviousDepartures();
     assertEquals(register2.getTrainDepartures(), register.getTrainDepartures());
   }
@@ -140,9 +141,10 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void testSortHashMapPos() {
-    TrainDeparture train1 = new TrainDeparture(LocalTime.of(15, 51), "H1", 66, "Hamar");
-    TrainDeparture train2 = new TrainDeparture(LocalTime.of(13, 14), "M14", 2, "Minsk");
-    TrainDeparture train3 = new TrainDeparture(LocalTime.of(18, 8), "S5", 55, "Stavanger");
+    TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(2), "H1", 66, "Hamar");
+    TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "M14", 2, "Minsk");
+    TrainDeparture train3 = new TrainDeparture(LocalTime.now().plusMinutes(55), "S5", 55,
+        "Stavanger");
     HashMap<Integer, TrainDeparture> trainsSorted = new HashMap<>();
     trainsSorted.put(train2.getTrainNumber(), train2);
     trainsSorted.put(train1.getTrainNumber(), train1);

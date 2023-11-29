@@ -22,7 +22,7 @@ public class TrainDepartureRegister {
    *                        as a value
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
-    this.currentTime = LocalTime.now();
+    this.currentTime = LocalTime.now().withSecond(0).withNano(0);
     this.trainDepartures = trainDepartures;
     validateTrainDepartureRegister();
   }
@@ -114,7 +114,7 @@ public class TrainDepartureRegister {
       .filter(entry -> {
         TrainDeparture trainDeparture = entry.getValue();
         LocalTime departureTimeWithDelay = trainDeparture.departureTimeWithDelay();
-        return departureTimeWithDelay.isAfter(LocalTime.now()); })
+        return departureTimeWithDelay.isAfter(currentTime); })
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
         (existing, replacement) -> existing, HashMap::new));
@@ -164,6 +164,9 @@ public class TrainDepartureRegister {
     return currentTime;
   }
 
+  public void setCurrentTime(LocalTime newTime) {
+    this.currentTime = newTime.withSecond(0).withNano(0);
+  }
 
   @Override
   public String toString() {

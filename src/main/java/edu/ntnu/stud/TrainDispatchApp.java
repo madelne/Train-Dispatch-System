@@ -74,10 +74,7 @@ public class TrainDispatchApp {
     return intFromUser;
   }
 
-  private void setCurrentTime(LocalTime newTime) {
-    register.currentTime = newTime;
-  }
-
+  
   /**
    * This method creates a train departure with the right constructor, even if the 
    * track and delay is set to 0.
@@ -112,7 +109,7 @@ public class TrainDispatchApp {
   }
 
   void init() {
-    register.currentTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+    register.setCurrentTime(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 16), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3)));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(14, 14), "L13", 
@@ -162,7 +159,7 @@ public class TrainDispatchApp {
           printTimeTable();
           break;
         case 9:
-          setCurrentTime(timeAsInput("Set current time"));
+          register.setCurrentTime(timeAsInput("Set current time"));
           break;
         default:
           break;
