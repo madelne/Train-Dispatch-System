@@ -141,7 +141,18 @@ public class TrainDepartureRegister {
     return sortedHashMap;
   }
 
-  
+  /**
+   * This method throws an IllegalArgumentExceptin if the train 
+   * register is null or if one of the trains has left the station.
+   */
+  public void validateTrainDepartureRegister() {
+    if (trainDepartures == null) {
+      throw new IllegalArgumentException();
+    }
+    trainDepartures.entrySet()
+        .forEach(trainDeparture -> 
+        trainDeparture.getValue().validateTrainDeparture(currentTime));
+  }
 
   public LocalTime getCurrentTime() {
     return currentTime;
