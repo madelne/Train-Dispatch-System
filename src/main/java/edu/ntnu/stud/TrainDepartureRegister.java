@@ -49,10 +49,12 @@ public class TrainDepartureRegister {
    */
   public void addTrainDeparture(TrainDeparture trainDeparture) {
     if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
-      throw new IllegalArgumentException("The train number is already used");
+      System.out.println("A train departure with this train number already exists");
+    } else {
+      trainDeparture.validateTrainDeparture(currentTime);
+      trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
     }
-    trainDeparture.validateTrainDeparture(currentTime);
-    trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
+    
   }
 
   /**

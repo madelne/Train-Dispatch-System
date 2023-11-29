@@ -206,20 +206,20 @@ public class TrainDispatchApp {
       switch (choice) {
         case 1:
           register.addTrainDeparture(chooseTrainDepartureConstructor(timeAsInput("Departure time"), 
-              stringAsInput("Line", 8), integerAsInput("Train number", 1000, 0), 
+              stringAsInput("Line", 8), integerAsInput("Train number", 1000, 1), 
               stringAsInput("Destination", 21), 
-              integerAsInput("Track (write 0 if the train departure has no track)", 100, 0), 
+              integerAsInput("Track (write 0 if the train departure has no track)", 100, 1), 
               timeAsInput("Delay")));
           break;
         case 2:
           register.removeTrainDeparture(integerAsInput(
-              "The train departure's train number", 1000, 0));
+              "The train departure's train number", 1000, 1));
           break;
         case 3:
           register.removePreviousDepartures();
           break;
         case 4:
-          System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 1000, 0)));
+          System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 1000, 1)));
           break;
         case 5:
           System.out.println(register.searchByDestination(stringAsInput("Destination", 21)));
@@ -229,7 +229,7 @@ public class TrainDispatchApp {
           break;
         case 7:
           register.trainDepartures.get(integerAsInput(
-              "The train departure's train number", 1000, 0))
+              "The train departure's train number", 1000, 1))
               .setDelay(timeAsInput("New delay"));
           break;
         case 8:
