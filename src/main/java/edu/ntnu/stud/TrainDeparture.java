@@ -56,22 +56,22 @@ public class TrainDeparture {
   public TrainDeparture(LocalTime departureTime, String line, int trainNumber, 
         String destination, int track, LocalTime delay) {
     if (departureTime == null) {
-      throw new IllegalArgumentException("The departure time can not be null");
+      throw new IllegalArgumentException("The departure time can not be null!");
     }
     if (line == "") {
-      throw new IllegalArgumentException("The line can not be empty");
+      throw new IllegalArgumentException("The line can not be empty!");
     }
     if (trainNumber <= 0 || trainNumber > 1000) {
-      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000!");
     }
     if (destination == "") {
-      throw new IllegalArgumentException("The destination can not be empty");
+      throw new IllegalArgumentException("The destination can not be empty!");
     }
     if (track < 0 || track > 100) {
-      throw new IllegalArgumentException("The track does not exist");
+      throw new IllegalArgumentException("The track does not exist!");
     }
     if (delay == LocalTime.of(0, 0)) {
-      throw new IllegalArgumentException("The delay can not be 0");
+      throw new IllegalArgumentException("The delay can not be 0!");
     }
     this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
@@ -99,19 +99,19 @@ public class TrainDeparture {
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination, int track) {
     if (departureTime == null) {
-      throw new IllegalArgumentException("The departure time can not be null");
+      throw new IllegalArgumentException("The departure time can not be null!");
     }
     if (line == "") {
-      throw new IllegalArgumentException("The line can not empty");
+      throw new IllegalArgumentException("The line can not empty!");
     }
     if (trainNumber <= 0 || trainNumber > 1000) {
-      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000!");
     }
     if (destination == "") {
-      throw new IllegalArgumentException("The destination can not be empty");
+      throw new IllegalArgumentException("The destination can not be empty!");
     }
     if (track < 0 || track > 100) {
-      throw new IllegalArgumentException("The track does not exist");
+      throw new IllegalArgumentException("The track does not exist!");
     }
     this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
@@ -137,19 +137,19 @@ public class TrainDeparture {
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination, LocalTime delay) {
     if (departureTime == null) {
-      throw new IllegalArgumentException("The departure time can not be null");
+      throw new IllegalArgumentException("The departure time can not be null!");
     }
     if (line == "") {
-      throw new IllegalArgumentException("The line can not empty");
+      throw new IllegalArgumentException("The line can not empty!");
     }
     if (trainNumber <= 0 || trainNumber > 1000) {
-      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000!");
     }
     if (destination == "") {
-      throw new IllegalArgumentException("The destination can not be empty");
+      throw new IllegalArgumentException("The destination can not be empty!");
     }
     if (delay == LocalTime.of(0, 0)) {
-      throw new IllegalArgumentException("The delay can not be 0");
+      throw new IllegalArgumentException("The delay can not be 0!");
     }
     this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
@@ -175,16 +175,16 @@ public class TrainDeparture {
   public TrainDeparture(LocalTime departureTime, String line, 
       int trainNumber, String destination) {
     if (departureTime == null) {
-      throw new IllegalArgumentException("The departure time can not be null");
+      throw new IllegalArgumentException("The departure time can not be null!");
     }
     if (line == "") {
-      throw new IllegalArgumentException("The line can not empty");
+      throw new IllegalArgumentException("The line can not empty!");
     }
     if (trainNumber <= 0 || trainNumber > 1000) {
-      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000");
+      throw new IllegalArgumentException("The train number can not be 0 or under or over 1000!");
     }
     if (destination == "") {
-      throw new IllegalArgumentException("The destination can not be empty");
+      throw new IllegalArgumentException("The destination can not be empty!");
     }
     this.departureTime = departureTime.withSecond(0).withNano(0);
     this.line = line;
@@ -252,7 +252,8 @@ public class TrainDeparture {
   public void validateTrainDeparture(LocalTime currenTime) {
     if (departureTimeWithDelay().isBefore(currenTime)) {
       System.out.println(
-          "Train number" + trainNumber + " has left the station and was not added to the register");
+          "Train number " + trainNumber 
+          + " has left the station and has been removed from the register!");
     }
   }
 

@@ -111,12 +111,12 @@ public class TrainDispatchApp {
           valid = true;
         } else {
           System.out.println("\nMust be a number between " + min + " and " + max 
-              + ". Please try again:");
+              + "! Please try again:");
           value = input.nextLine();
         }
       } catch (NumberFormatException numberFormatException) {
         System.out.println("\nMust be a number between " + min + " and " + max
-            + ". Please try again:");
+            + "! Please try again:");
         value = input.nextLine();
       }
     }
@@ -140,7 +140,7 @@ public class TrainDispatchApp {
       if (value.length() <= maxCharacters) {
         valid = true;
       } else {
-        System.out.println("\nNumber of characters is over the limit."  
+        System.out.println("\nNumber of characters is over the limit!"  
             + " Please enter a string with a maximum of " + maxCharacters + " letters:");
         value = input.nextLine();
       }
@@ -240,9 +240,13 @@ public class TrainDispatchApp {
           }
           break;
         case 7:
-          register.trainDepartures.get(integerAsInput(
+          try {
+            register.trainDepartures.get(integerAsInput(
               "The train departure's train number", 1000, 1))
-              .setDelay(timeAsInput("New delay"));
+                .setDelay(timeAsInput("New delay"));
+          } catch (NullPointerException nullPointerException) {
+            System.out.println("The train departure does not exist!");
+          }
           break;
         case 8:
           printTimeTable();

@@ -49,7 +49,7 @@ public class TrainDepartureRegister {
    */
   public void addTrainDeparture(TrainDeparture trainDeparture) {
     if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
-      System.out.println("A train departure with this train number already exists");
+      System.out.println("A train departure with this train number already exists!");
     } else {
       trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
       trainDeparture.validateTrainDeparture(currentTime);
@@ -68,7 +68,7 @@ public class TrainDepartureRegister {
     if (trainDepartures.containsKey(trainNumber)) {
       trainDepartures.remove(trainNumber);
     } else {
-      System.out.println("The train departure does not exist.");
+      System.out.println("The train departure does not exist!");
     }
     
   }
