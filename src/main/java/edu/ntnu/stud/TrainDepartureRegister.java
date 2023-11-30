@@ -65,7 +65,12 @@ public class TrainDepartureRegister {
    *                    the train departure the user wishes to remove
    */
   public void removeTrainDeparture(int trainNumber) {
-    trainDepartures.remove(trainNumber);
+    if (trainDepartures.containsKey(trainNumber)) {
+      trainDepartures.remove(trainNumber);
+    } else {
+      System.out.println("The train departure does not exist.");
+    }
+    
   }
 
   /**

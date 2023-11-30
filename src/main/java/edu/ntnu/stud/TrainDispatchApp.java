@@ -137,11 +137,11 @@ public class TrainDispatchApp {
     Scanner input = new Scanner(System.in);
     boolean valid = false;
     while (valid == false) {
-      if (value.length() < maxCharacters) {
+      if (value.length() <= maxCharacters) {
         valid = true;
       } else {
         System.out.println("\nNumber of characters is over the limit."  
-            + "Please enter a string with a maximum of " + maxCharacters + "letters:");
+            + " Please enter a string with a maximum of " + maxCharacters + " letters:");
         value = input.nextLine();
       }
     }
@@ -225,7 +225,19 @@ public class TrainDispatchApp {
           System.out.println(register.searchByDestination(stringAsInput("Destination", 21)));
           break;
         case 6:
-          this.register = new TrainDepartureRegister();
+          boolean valid = false;
+          String answer = stringAsInput(
+              "Are you sure you want to delete all train departures? y/n", 1);
+          while (valid == false) {
+            if (answer.toLowerCase().equals("y")) {
+              this.register = new TrainDepartureRegister();
+              valid = true;
+            } else if (answer.toLowerCase().equals("n")) {
+              valid = true;
+            } else {
+              answer = stringAsInput("Please write 'y' for yes or 'n' for no", 1);
+            }
+          }
           break;
         case 7:
           register.trainDepartures.get(integerAsInput(
@@ -241,9 +253,9 @@ public class TrainDispatchApp {
         default:
           break;
       }
-      System.out.println("1: Add train departure\n2: Remove train departure\n"
+      System.out.println("\n1: Add train departure\n2: Remove train departure\n"
           + "3: Remove all previous departures\n4: Search by train number\n"
-          + "5: Search by destination\n6: Add new register\n7: Add delay\n"
+          + "5: Search by destination\n6: Empty register\n7: Add delay\n"
           + "8: Print updated timetable\n9: Set the current time\n10: Exit\n");
       choice = input.nextInt();
     }

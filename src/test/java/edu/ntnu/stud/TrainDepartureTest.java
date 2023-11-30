@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 public class TrainDepartureTest {
   
-  public LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);;
+  public LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
 
   @Test
   void testConstructor1Pos() {

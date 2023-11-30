@@ -32,6 +32,7 @@ public class TrainDepartureRegisterTest {
   @Test
   void testConstructor1Neg() {
     assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
+
   }
 
   @Test
@@ -156,6 +157,11 @@ public class TrainDepartureRegisterTest {
     TrainDepartureRegister register = new TrainDepartureRegister(trains);
     HashMap<Integer, TrainDeparture> sortedRegister = register.sortHashMap();
     assertEquals(trainsSorted, sortedRegister); 
+  }
+
+  @Test
+  void testSortHashMapNeg() {
+    /*fylli inn */
   }
 
 }
