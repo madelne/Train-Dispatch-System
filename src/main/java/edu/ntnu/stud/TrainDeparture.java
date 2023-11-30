@@ -67,7 +67,7 @@ public class TrainDeparture {
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0 || track > 100) {
+    if (track < 0 || track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
     if (delay == LocalTime.of(0, 0)) {
@@ -110,7 +110,7 @@ public class TrainDeparture {
     if (destination == "") {
       throw new IllegalArgumentException("The destination can not be empty");
     }
-    if (track <= 0 || track > 100) {
+    if (track < 0 || track > 100) {
       throw new IllegalArgumentException("The track does not exist");
     }
     this.departureTime = departureTime.withSecond(0).withNano(0);
@@ -250,8 +250,9 @@ public class TrainDeparture {
    * @param currenTime The parameter is the current time.
    */
   public void validateTrainDeparture(LocalTime currenTime) {
-    if (departureTimeWithDelay().isBefore(currenTime) == false) {
-      System.out.println(trainNumber + " has left the station and was not added to the register");
+    if (departureTimeWithDelay().isBefore(currenTime)) {
+      System.out.println(
+          "Train number" + trainNumber + " has left the station and was not added to the register");
     }
   }
 

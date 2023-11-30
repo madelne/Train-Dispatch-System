@@ -51,8 +51,9 @@ public class TrainDepartureRegister {
     if (trainDepartures.containsKey(trainDeparture.getTrainNumber())) {
       System.out.println("A train departure with this train number already exists");
     } else {
-      trainDeparture.validateTrainDeparture(currentTime);
       trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
+      trainDeparture.validateTrainDeparture(currentTime);
+      removePreviousDepartures();
     }
     
   }
@@ -155,11 +156,7 @@ public class TrainDepartureRegister {
     trainDepartures.entrySet()
         .forEach(trainDeparture ->
           trainDeparture.getValue().validateTrainDeparture(currentTime));
-    trainDepartures.entrySet().stream()
-        .filter(trainDeparture -> 
-          trainDeparture.getValue().departureTimeWithDelay().isBefore(currentTime))
-        .forEach(trainDeparture -> 
-          removeTrainDeparture(trainDeparture.getKey()));
+    removePreviousDepartures();
   }
 
   public LocalTime getCurrentTime() {

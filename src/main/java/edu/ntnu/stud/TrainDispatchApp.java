@@ -34,7 +34,7 @@ public class TrainDispatchApp {
           train.getValue().departureTimeWithDelay()));  
         }
     );
-    System.out.println("-----------------------------------------------------");
+    System.out.println("-----------------------------------------------------\n");
   }
 
   /**
@@ -43,7 +43,7 @@ public class TrainDispatchApp {
    * @return Returns the two numbers as a LocalTime value
    */
   public LocalTime timeAsInput(String variable) {
-    System.out.println(variable + " hour:");
+    System.out.println("\n" + variable + " hour:");
     Scanner input = new Scanner(System.in);
     String departureTimeHoursString = input.nextLine();
     int departureTimeHours = validateIntegerInput(departureTimeHoursString, 23, 0);
@@ -62,7 +62,7 @@ public class TrainDispatchApp {
    * @return         Returns the variable as a string
    */
   public String stringAsInput(String variable, int maxCharacters) {
-    System.out.println(variable + ":");
+    System.out.println("\n" + variable + ":");
     Scanner input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
     String validString = validateStringInput(stringFromUser, maxCharacters);
@@ -81,7 +81,7 @@ public class TrainDispatchApp {
    * @return         Returns the variable as an integer
    */
   public int integerAsInput(String variable, int max, int min) {
-    System.out.println(variable + ":");
+    System.out.println("\n" + variable + ":");
     Scanner input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
     int intFromUser = validateIntegerInput(stringFromUser, max, min);
@@ -110,12 +110,12 @@ public class TrainDispatchApp {
         if (validNumber <= max && validNumber >= min) {
           valid = true;
         } else {
-          System.out.println("Must be a number between " + min + " and " + max 
+          System.out.println("\nMust be a number between " + min + " and " + max 
               + ". Please try again:");
           value = input.nextLine();
         }
       } catch (NumberFormatException numberFormatException) {
-        System.out.println("Must be a number between " + min + " and " + max
+        System.out.println("\nMust be a number between " + min + " and " + max
             + ". Please try again:");
         value = input.nextLine();
       }
@@ -140,7 +140,7 @@ public class TrainDispatchApp {
       if (value.length() < maxCharacters) {
         valid = true;
       } else {
-        System.out.println("Number of characters is over the limit."  
+        System.out.println("\nNumber of characters is over the limit."  
             + "Please enter a string with a maximum of " + maxCharacters + "letters:");
         value = input.nextLine();
       }
@@ -199,7 +199,7 @@ public class TrainDispatchApp {
     System.out.println("1: Add train departure\n2: Remove train departure\n"
         + "3: Remove all previous departures\n4: Search by train number\n"
         + "5: Search by destination\n6: Empty register\n7: Add delay\n"
-        + "8: Print updated timetable\n9: Set the current time\n10: Exit");
+        + "8: Print updated timetable\n9: Set the current time\n10: Exit\n");
     Scanner input = new Scanner(System.in);
     int choice = input.nextInt();
     while (choice != 10) {
@@ -208,7 +208,7 @@ public class TrainDispatchApp {
           register.addTrainDeparture(chooseTrainDepartureConstructor(timeAsInput("Departure time"), 
               stringAsInput("Line", 8), integerAsInput("Train number", 1000, 1), 
               stringAsInput("Destination", 21), 
-              integerAsInput("Track (write 0 if the train departure has no track)", 100, 1), 
+              integerAsInput("Track (write 0 if the train departure has no track)", 100, 0), 
               timeAsInput("Delay")));
           break;
         case 2:
@@ -244,7 +244,7 @@ public class TrainDispatchApp {
       System.out.println("1: Add train departure\n2: Remove train departure\n"
           + "3: Remove all previous departures\n4: Search by train number\n"
           + "5: Search by destination\n6: Add new register\n7: Add delay\n"
-          + "8: Print updated timetable\n9: Set the current time\n10: Exit");
+          + "8: Print updated timetable\n9: Set the current time\n10: Exit\n");
       choice = input.nextInt();
     }
   }
