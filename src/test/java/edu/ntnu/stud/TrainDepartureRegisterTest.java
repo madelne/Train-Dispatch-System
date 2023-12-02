@@ -72,7 +72,7 @@ public class TrainDepartureRegisterTest {
     register1.addTrainDeparture(train2);
     TrainDepartureRegister register2 = new TrainDepartureRegister();
     register2.addTrainDeparture(train1);
-    assertEquals(register2, register1);
+    assertEquals(register2.getTrainDepartures(), register1.getTrainDepartures());
   }
 
   @Test
