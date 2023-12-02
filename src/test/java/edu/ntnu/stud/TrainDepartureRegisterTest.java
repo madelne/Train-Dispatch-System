@@ -16,29 +16,28 @@ public class TrainDepartureRegisterTest {
   public LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
   
   @Test
-  void testConstructor1Pos() {
-    TrainDeparture train1 = new TrainDeparture(currentTime.plusHours(3), "C3", 30, 
+  void shouldInitialiseTrainDepartureRegisterWithValidTrainDepartures() {
+    TrainDeparture trainDeparture1 = new TrainDeparture(currentTime.plusHours(3), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
-    TrainDeparture train2 = new TrainDeparture(currentTime.plusMinutes(3), "OD10", 
+    TrainDeparture trainDeparture2 = new TrainDeparture(currentTime.plusMinutes(3), "OD10", 
         100, "Blommenholm", 1);
-    TrainDeparture train3 = new TrainDeparture(currentTime.plusMinutes(30), "J1", 0101, 
+    TrainDeparture trainDeparture3 = new TrainDeparture(currentTime.plusMinutes(30), "J1", 0101, 
         "Gjøvik", LocalTime.of(0, 15));
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
-    trains.put(train1.getTrainNumber(), train1);
-    trains.put(train2.getTrainNumber(), train2);
-    trains.put(train3.getTrainNumber(), train3);
+    trains.put(trainDeparture1.getTrainNumber(), trainDeparture1);
+    trains.put(trainDeparture2.getTrainNumber(), trainDeparture2);
+    trains.put(trainDeparture3.getTrainNumber(), trainDeparture3);
     TrainDepartureRegister trainRegister = new TrainDepartureRegister(trains);
     assertEquals(trains, trainRegister.getTrainDepartures());
   }
 
   @Test
-  void testConstructor1Neg() {
+  void shouldThrowExceptionWithNullHashMap() {
     assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
-
   }
 
   @Test
-  void testConstructor2Pos() {
+  void shouldInitialiseEmptyTrainDepartureRegister() {
     TrainDepartureRegister register = new TrainDepartureRegister();
     HashMap<Integer, TrainDeparture> emptyHashMap = new HashMap<>();
     assertEquals(emptyHashMap, register.getTrainDepartures());
@@ -53,7 +52,7 @@ public class TrainDepartureRegisterTest {
 
 
   @Test
-  void testAddTrainDeparturePos() {
+  void shouldAddValidTrainDeparturesToRegister() {
     HashMap<Integer, TrainDeparture> trains = new HashMap<>();
     TrainDeparture train = new TrainDeparture(currentTime.plusMinutes(30), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
@@ -64,7 +63,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testAddTrainDepartureNeg() {
+  void shouldNotAddTrainDeparturesWithDuplicateTrainNumber() {
     TrainDeparture train1 = new TrainDeparture(currentTime.plusMinutes(5), "B1", 123, "Oslo");
     TrainDeparture train2 = new TrainDeparture(currentTime.plusMinutes(4), "C2", 123, "Bergen");
     TrainDepartureRegister register1 = new TrainDepartureRegister();
@@ -76,7 +75,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testAddDepartedTrainDeparture() {
+  void shouldNotAddDepartedTrainDepartures() {
     TrainDeparture train1 = new TrainDeparture(currentTime.plusHours(3), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
     TrainDeparture train2 = new TrainDeparture(currentTime.minusMinutes(3), "OD10", 
@@ -90,7 +89,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSearchByTrainNumberPos() {
+  void shouldReturnTheTrainWithGivenTrainNumber() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusHours(4), "OD10", 
         100, "Blommenholm", 1);
     TrainDeparture train2 = new TrainDeparture(currentTime.plusHours(3), "C3", 30, 
@@ -103,14 +102,20 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSearchByTrainNumberNeg() {
+  void shouldThrowExceptionWith0TrainNumber() {
     TrainDepartureRegister register = new TrainDepartureRegister();
     /*0 train number should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> register.searchByTrainNumber(0));
   }
 
   @Test
-  void testSearchByDestinationPos() {
+  void shouldReturnNullIfTrainNumberDoesNotExistInRegister() {
+    TrainDepartureRegister register = new TrainDepartureRegister();
+    assertEquals(register.searchByTrainNumber(4), null);
+  }
+
+  @Test
+  void shouldReturnHashMapWithAllTrainDeparturesWithGivenDestination() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(5), "OD10", 
         100, "Blommenholm", 1);
     TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "J1", 010, 
@@ -128,7 +133,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSearchByDestinationNeg() {
+  void shouldThrowExceptionWithEmptyDestinationString() {
     TrainDepartureRegister register = new TrainDepartureRegister();
     /*Empty string destination should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> register.searchByDestination(""));
@@ -136,7 +141,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testRemovePreviousDeparturesPos() {
+  void shouldRemoveAllDepartedTrainDepartures() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(3), "T15", 15, 
         "Lillehammer");   
     TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "h", 1, "Oslo");
@@ -158,7 +163,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSortHashMapPos() {
+  void shouldReturnHashMapSortedByDepartureTime() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(2), "H1", 66, "Hamar");
     TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "M14", 2, "Minsk");
     TrainDeparture train3 = new TrainDeparture(LocalTime.now().plusMinutes(55), "S5", 55,
@@ -181,7 +186,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testRemoveTrainDeparturePos() {
+  void shouldRemoveTrainDepartureWithGivenTrainNumber() {
     TrainDeparture train1 = new TrainDeparture(LocalTime.now().plusMinutes(3), "T15", 15, 
         "Lillehammer");   
     TrainDeparture train2 = new TrainDeparture(LocalTime.now().plusHours(1), "h", 1, "Oslo");
@@ -192,6 +197,11 @@ public class TrainDepartureRegisterTest {
     TrainDepartureRegister register2 = new TrainDepartureRegister();
     register2.addTrainDeparture(train1);
     assertEquals(register2.getTrainDepartures(), register1.getTrainDepartures());
+  }
+
+  @Test
+  void removeTrainDepartureTestNeg() {
+    /*full inn */
   }
 
 }
