@@ -32,11 +32,6 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void shouldThrowExceptionWithNullHashMap() {
-    assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
-  }
-
-  @Test
   void shouldInitialiseEmptyTrainDepartureRegister() {
     TrainDepartureRegister register = new TrainDepartureRegister();
     HashMap<Integer, TrainDeparture> emptyHashMap = new HashMap<>();
@@ -202,6 +197,16 @@ public class TrainDepartureRegisterTest {
   @Test
   void removeTrainDepartureTestNeg() {
     /*full inn */
+  }
+
+  @Test 
+  void validTrainDepartureRegisterShouldDoNothing() {
+    /*fyll inn */
+  }
+
+  @Test
+  void shouldThrowExceptionWithNullHashMap() {
+    assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
   }
 
 }

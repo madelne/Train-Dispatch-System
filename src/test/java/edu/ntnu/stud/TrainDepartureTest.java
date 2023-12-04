@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 
 /**
  * This is the test class for the TrainDeparture class.
@@ -176,5 +177,19 @@ public class TrainDepartureTest {
     /*Empty string destination should throw IllegalArgumentException*/
     assertThrows(IllegalArgumentException.class, () -> 
         new TrainDeparture(LocalTime.of(1, 1), "H", 1, "", 1, LocalTime.of(0, 5)));
+  }
+
+  @Test
+  void shouldReturnValidDelay() {
+    TrainDeparture trainDeparture = new TrainDeparture(
+        currentTime.plusHours(3), "M7", 04, "Oslo", LocalTime.of(0, 10));
+    assertEquals(LocalTime.of(0, 10), trainDeparture.getDelay());
+  }
+
+  @Test
+  void shouldReturn0DelayWithNullDelay() {
+    TrainDeparture trainDeparture = new TrainDeparture(
+        currentTime.plusHours(3), "H3", 13, "Stabæk");
+    assertEquals(LocalTime.of(0, 0), trainDeparture.getDelay());
   }
 }
