@@ -3,30 +3,33 @@ package edu.ntnu.stud;
 import java.time.LocalTime;
 
 /**
- * This class represents a train departure. It has an indice for the train's departure time as 
- * a LocalTime value, because we want it portrayed as hh:mm. The departure time is set and can 
- * not be changed due to the schedule being a set plan. 
+ * This class represents a train departure. It has a field for the train's departure time as 
+ * a LocalTime value, because we want it portrayed as hh:mm. 
  * 
- * <p>The next indice is the line, which i have set as a string. This is because the line is a word 
+ * <p>The next field is the line, which i have set as a string. This is because the line is a word 
  * or a name. 
  * 
- * <p>The next indice is the trainnumber, which is set as aninteger, due to it being a number. 
- * Neither the line og trainnumber has a set method, as they identify the train and they are 
- * not something we wish to change. 
+ * <p>The next field is the trainnumber, which is set as an integer, due to it being a number. 
  * 
- * <p>The destination is written as a string, since this is the name of a place. The tracks are 
- * named with numbers so it is set as an integer. As the schedule is unchangeable, the 
- * destination and track do not have a set method. 
+ * <p>The field destination is a string.
+ * 
+ * <p>The schedule is a set plan and the fields that would change the schedule are departureTime and
+ * destination. Therefore they are both private final fields with no set method.
+ * 
+ *<p>Neither the line og trainnumber has a set method and are both private final fields, as they 
+ * identify the train and they are not something we wish to change. 
+ * 
+ * <p>The track is an integer and has a set method. The train's track would still follow the set schedule 
+ * if it changed tracks so it is a private, but not final field. 
  * 
  * <p>The delay is portrayed as hh:mm and is therefore set as a LocalTime value. The time of delay 
- * is unpredictable and has a set method. 
+ * is unpredictable and has a set method. The field is private, but not final.
  * 
- * <p>UGYLDIG DATA:
- * ????????????
- * 
- * Burde jeg fjerne tognummer som objekt, isåfall hva gjør jeg da???
+ * <p>A train departure with departure time null, line as an empty string, train number below 0 or over 
+ * 1000, destination as an empty string, track below 0 or over 100 or a 0 delay would not be a valid
+ * train departure.
  *
- * @author Madeleine Negård
+ * <p>@author Madeleine Negård
  */
 public class TrainDeparture {
 

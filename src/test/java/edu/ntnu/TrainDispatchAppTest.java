@@ -3,10 +3,11 @@ package edu.ntnu;
 import org.junit.jupiter.api.Test;
 
 public class TrainDispatchAppTest {
+
         
   @Test
   void timeAsInputPos() {
-    /*fyll inn */
+    
   }
 
   @Test

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
+
 
 /**
  * This is the test class for the TrainDepartureRegister class.
@@ -41,13 +41,6 @@ public class TrainDepartureRegisterTest {
   void shouldInitialiseEmptyTrainDepartureRegister() {
     HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
     assertEquals(trainDepartures, new TrainDepartureRegister().getTrainDepartures());
-  }
-
-  @Test
-  void testConstructor2Neg() {
-     /**
-     * Negativ test for konstruktøren. fyll inn.
-     */
   }
 
   @Test
@@ -156,13 +149,6 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testRemovePreviousDeparturesNeg() {
-    /**
-     * negativ test.
-     */
-  }
-
-  @Test
   void shouldReturnHashMapSortedByDepartureTime() {
     trainDeparture1 = new TrainDeparture(
         LocalTime.now().plusMinutes(2), "H1", 66, "Hamar");
@@ -183,11 +169,6 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void testSortHashMapNeg() {
-    /*fylli inn */
-  }
-
-  @Test
   void shouldRemoveTrainDepartureWithGivenTrainNumber() {
     trainDeparture1 = new TrainDeparture(
         LocalTime.now().plusMinutes(3), "T15", 15, "Lillehammer");   
@@ -203,10 +184,12 @@ public class TrainDepartureRegisterTest {
     assertFalse(register1.getTrainDepartures().containsKey(10));
     register1.removeTrainDeparture(10);
   }
-
+  
+  /*Fjern???? brukes jo i andre metoder som er testet */
   @Test 
   void validTrainDepartureRegisterShouldDoNothing() {
-    /*fyll inn */
+    register1 = new TrainDepartureRegister();
+    register1.validateTrainDepartureRegister();
   }
 
   @Test

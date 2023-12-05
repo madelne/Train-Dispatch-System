@@ -1,11 +1,21 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
-import java.util.stream.Collectors;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
- * This class is a register that holds all train departures.
+ * This class is a register that holds all train departures. It holds all the train departures in
+ * a HashMap. The class has two constructors, one that takes a HashMap and one without a parameter.
+ * The last constructor creates a new empty HashMap when initialized. 
+ * 
+ * <p>HashMap trainDepartures is a private field. The keys are the train numbers and the values are trainDeparture objects.
+ * The HashMap is not final, but has no set method. Instead it has methods to remove and add 
+ * train departures.
+ * 
+ * <p>The LocalTime currentTime is a private field. It can be changed and therefore has a set method. 
+ * 
+ * <p>A message will be printed if the user tries to initialize the fields as null.
  *
  * @author Madeleine Negård
  */
@@ -115,8 +125,8 @@ public class TrainDepartureRegister {
 
   
   /**
-   * This method removes all trains that have had departure time, including delay, 
-   * prior to the current time.
+   * This method removes all trains with departure time prior to the current time or is delayed 
+   * until the next day.
    */
   public void removePreviousAndTomorrowsDepartures() {
     this.trainDepartures = trainDepartures.entrySet().stream()
@@ -149,6 +159,7 @@ public class TrainDepartureRegister {
    * This method throws an IllegalArgumentExceptin if the train 
    * register is null. If the departure time is prior to the current time, 
    * the method prints out a message and removes the train departure from the register.
+   * If the train is delayed until the next day, the train is removed from the register.
    */
   public void validateTrainDepartureRegister() {
     if (trainDepartures == null) {
@@ -165,8 +176,13 @@ public class TrainDepartureRegister {
   }
 
   public void setCurrentTime(LocalTime newTime) {
-    this.currentTime = newTime.withSecond(0).withNano(0);
+    if (newTime.equals(null)) {
+      System.out.println("The new time can not be null and was not changed!");
+    } else {
+      this.currentTime = newTime.withSecond(0).withNano(0);
     removePreviousAndTomorrowsDepartures();
+    }
+    
   }
 
   @Override

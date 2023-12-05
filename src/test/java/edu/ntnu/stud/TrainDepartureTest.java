@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 /**
  * This is the test class for the TrainDeparture class.
@@ -210,11 +209,11 @@ public class TrainDepartureTest {
 
   @Test 
   void validateTrainDeparturePos() {
-    /*fyll inn */
+    /*Trenger jeg??? brukes i andre metoder */
   }
 
   @Test
   void validateTrainDepartureNeg() {
-    /*fyll inn */
+    /*Trenger jeg??? brukes i andre metoder */
   }
 }
