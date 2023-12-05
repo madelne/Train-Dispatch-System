@@ -184,13 +184,13 @@ public class TrainDispatchApp {
 
   void init() {
     register.setCurrentTime(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()));
-    register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 16), "L1", 
+    register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 45), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3)));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(14, 14), "L13", 
         2, "Dal", 3));
-    register.addTrainDeparture(new TrainDeparture(LocalTime.of(15, 0), "F2", 
+    register.addTrainDeparture(new TrainDeparture(LocalTime.of(20, 0), "F2", 
         3, "Oslo Lufthavn", LocalTime.of(1, 0)));
-    register.addTrainDeparture(new TrainDeparture(LocalTime.of(9, 7), "H3",  
+    register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 55), "H3",  
         4, "Hamar", 3, LocalTime.of(0, 13)));
     printTimeTable();
   }
@@ -241,7 +241,7 @@ public class TrainDispatchApp {
           break;
         case 7:
           try {
-            register.trainDepartures.get(integerAsInput(
+            register.getTrainDepartures().get(integerAsInput(
               "The train departure's train number", 1000, 1))
                 .setDelay(timeAsInput("New delay"));
           } catch (NullPointerException nullPointerException) {

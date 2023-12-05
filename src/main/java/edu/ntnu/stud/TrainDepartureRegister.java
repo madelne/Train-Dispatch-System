@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
  */
 public class TrainDepartureRegister {
         
-  public HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
-  public LocalTime currentTime;
+  private HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
+  private LocalTime currentTime;
 
   /**
    * Constructor for class TrainDepartureRegister.
@@ -139,7 +139,7 @@ public class TrainDepartureRegister {
   public HashMap<Integer, TrainDeparture> sortHashMap() {
     HashMap<Integer, TrainDeparture> sortedHashMap = new HashMap<>();
     trainDepartures.entrySet().stream()
-        .sorted((trainDeparture1, trainDeparture2) -> 
+        .sorted((trainDeparture2, trainDeparture1) -> 
         (trainDeparture1.getValue().getDepartureTime().getHour()
         - trainDeparture2.getValue().getDepartureTime().getHour()) 
         * 100 + (trainDeparture1.getValue().getDepartureTime().getMinute() 

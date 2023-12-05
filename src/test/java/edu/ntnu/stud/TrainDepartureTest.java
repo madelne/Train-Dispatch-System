@@ -192,4 +192,24 @@ public class TrainDepartureTest {
         currentTime.plusHours(3), "H3", 13, "Stabæk");
     assertEquals(LocalTime.of(0, 0), trainDeparture.getDelay());
   }
+
+  @Test
+  void departureTimeWithDelayPos() {
+    /*fyll inn */
+  }
+
+  @Test
+  void departureTimeWithDelayNeg() {
+    /*fyll inn */
+  }
+
+  @Test 
+  void validateTrainDeparturePos() {
+    /*fyll inn */
+  }
+
+  @Test
+  void validateTrainDepartureNeg() {
+    /*fyll inn */
+  }
 }

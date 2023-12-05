@@ -193,6 +193,29 @@ public class TrainDeparture {
     setTrack(-1);
   }
 
+  /**
+   * This method adds the delay to the original departure time.
+   *
+   * @return Returns the new departure time as a LocalTime value
+   */
+  public LocalTime departureTimeWithDelay() {
+    return departureTime.plusHours(getDelay().getHour())
+    .plusMinutes(getDelay().getMinute());
+  }
+
+  /**
+   * This method prints out a message if the departure time is prior to the current time.
+   *
+   * @param currenTime The parameter is the current time.
+   */
+  public void validateTrainDeparture(LocalTime currenTime) {
+    if (departureTimeWithDelay().isBefore(currenTime)) {
+      System.out.println(
+          "Train number " + trainNumber 
+          + " has left the station and has been removed from the register!");
+    }
+  }
+
   public LocalTime getDepartureTime() {
     return this.departureTime;
   }
@@ -232,29 +255,6 @@ public class TrainDeparture {
     
   public void setDelay(LocalTime delay) {
     this.delay = delay;
-  }
-
-  /**
-   * This method adds the delay to the original departure time.
-   *
-   * @return Returns the new departure time as a LocalTime value
-   */
-  public LocalTime departureTimeWithDelay() {
-    return departureTime.plusHours(getDelay().getHour())
-    .plusMinutes(getDelay().getMinute());
-  }
-
-  /**
-   * This method prints out a message if the departure time is prior to the current time.
-   *
-   * @param currenTime The parameter is the current time.
-   */
-  public void validateTrainDeparture(LocalTime currenTime) {
-    if (departureTimeWithDelay().isBefore(currenTime)) {
-      System.out.println(
-          "Train number " + trainNumber 
-          + " has left the station and has been removed from the register!");
-    }
   }
 
   @Override
