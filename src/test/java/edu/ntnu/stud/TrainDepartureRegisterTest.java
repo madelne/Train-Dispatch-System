@@ -1,6 +1,7 @@
 package edu.ntnu.stud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
  */
 public class TrainDepartureRegisterTest {
 
-  public LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
+  private LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
   
   @Test
   void shouldInitialiseTrainDepartureRegisterWithValidTrainDepartures() {
@@ -194,8 +195,10 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void removeTrainDepartureTestNeg() {
-    
+  void shouldPrintMessageInsteadOfRemovingNonExistinTrainDeparture() {
+    TrainDepartureRegister register = new TrainDepartureRegister();
+    assertFalse(register.getTrainDepartures().containsKey(10));
+    register.removeTrainDeparture(10);
   }
 
   @Test 
