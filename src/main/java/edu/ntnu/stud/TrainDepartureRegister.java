@@ -157,8 +157,14 @@ public class TrainDepartureRegister {
     }
     trainDepartures.entrySet()
         .forEach(trainDeparture ->
-          trainDeparture.getValue().validateTrainDeparture(currentTime));
+        trainDeparture.getValue().validateTrainDeparture(currentTime));
     removePreviousDepartures();
+    trainDepartures.entrySet().stream()
+        .filter(trainDeparture -> 
+        trainDeparture.getValue().departureTimeWithDelay()
+        .isBefore(trainDeparture.getValue().getDepartureTime()))
+        .forEach(trainDeparture -> 
+        removeTrainDeparture(trainDeparture.getKey()));
   }
 
   public LocalTime getCurrentTime() {

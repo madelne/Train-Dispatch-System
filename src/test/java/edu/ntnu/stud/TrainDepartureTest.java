@@ -194,13 +194,18 @@ public class TrainDepartureTest {
   }
 
   @Test
-  void departureTimeWithDelayPos() {
-    /*fyll inn */
+  void shouldReturnDepartureTimeWithDelayWithValidDepartureAndDelay() {
+    TrainDeparture trainDeparture = new TrainDeparture(
+        currentTime.plusHours(5), "E09", 12, "Høvik", LocalTime.of(0, 5));
+    assertEquals(currentTime.plusHours(5).plusMinutes(5), trainDeparture.departureTimeWithDelay());
   }
 
   @Test
-  void departureTimeWithDelayNeg() {
-    /*fyll inn */
+  void departureTimeWithDelayPastMidnight() {
+    TrainDeparture trainDeparture = new TrainDeparture(
+        currentTime.plusHours(6), "K1", 22, "Asker", LocalTime.of(13, 0));
+    assertEquals(currentTime.plusHours(6).plusHours(13), trainDeparture.departureTimeWithDelay());
+    /*Trenger jeg egt når jeg tester getDelay?? */
   }
 
   @Test 
