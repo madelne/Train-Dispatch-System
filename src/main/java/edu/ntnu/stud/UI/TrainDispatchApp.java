@@ -1,4 +1,4 @@
-package edu.ntnu.stud.UI;
+package edu.ntnu.stud.ui;
 
 import edu.ntnu.stud.TrainDeparture;
 import edu.ntnu.stud.TrainDepartureRegister;
@@ -282,9 +282,9 @@ public class TrainDispatchApp {
   }
   
   /**
-   * This is the main method.
+   *The main method. Initializes a register and the menu.
    *
-   * @param args 
+   * @param args The command line
    */
   public static void main(String[]args) {
     TrainDispatchApp menu = new TrainDispatchApp();
