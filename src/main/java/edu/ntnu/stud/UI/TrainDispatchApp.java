@@ -24,6 +24,7 @@ import java.util.Scanner;
 public class TrainDispatchApp {
 
   private TrainDepartureRegister register = new TrainDepartureRegister();
+  private static Scanner input;
 
   /**
    * This method prints out a timetable for the trainDepartures in the register.
@@ -57,7 +58,7 @@ public class TrainDispatchApp {
    */
   public LocalTime timeAsInput(String variable) {
     System.out.println("\n" + variable + " hour:");
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     String departureTimeHoursString = input.nextLine();
     int departureTimeHours = validateIntegerInput(departureTimeHoursString, 23, 0);
     System.out.println(variable + " minutes:");
@@ -76,7 +77,7 @@ public class TrainDispatchApp {
    */
   public String stringAsInput(String variable, int maxCharacters) {
     System.out.println("\n" + variable + ":");
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
     String validString = validateStringInput(stringFromUser, maxCharacters);
     return validString;
@@ -95,7 +96,7 @@ public class TrainDispatchApp {
    */
   public int integerAsInput(String variable, int max, int min) {
     System.out.println("\n" + variable + ":");
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
     int intFromUser = validateIntegerInput(stringFromUser, max, min);
     return intFromUser;
@@ -114,7 +115,7 @@ public class TrainDispatchApp {
    * @return      The method returns the first valid input given by the user
    */
   public int validateIntegerInput(String value, int max, int min) {
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     boolean valid = false;
     int validNumber = 0;
     while (valid == false) {
@@ -147,7 +148,7 @@ public class TrainDispatchApp {
    * @return              The method returns the first valid input given by the user
    */
   public String validateStringInput(String value, int maxCharacters) {
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     boolean valid = false;
     while (valid == false) {
       if (value.length() <= maxCharacters) {
@@ -213,7 +214,7 @@ public class TrainDispatchApp {
         + "3: Remove all previous departures\n4: Search by train number\n"
         + "5: Search by destination\n6: Empty register\n7: Add delay\n"
         + "8: Print updated timetable\n9: Set the current time\n10: Exit\n");
-    Scanner input = new Scanner(System.in);
+    input = new Scanner(System.in);
     int choice = input.nextInt();
     while (choice != 10) {
       switch (choice) {
@@ -289,7 +290,7 @@ public class TrainDispatchApp {
     TrainDispatchApp menu = new TrainDispatchApp();
     menu.init();
     menu.start();
-    
+    input.close();
   }
   
 }
