@@ -206,10 +206,10 @@ public class TrainDeparture {
   /**
    * This method prints out a message if the departure time is prior to the current time.
    *
-   * @param currenTime The parameter is the current time.
+   * @param currentTime The parameter is the current time.
    */
-  public void validateTrainDeparture(LocalTime currenTime) {
-    if (departureTimeWithDelay().isBefore(currenTime)) {
+  public void validateTrainDeparture(LocalTime currentTime) {
+    if (departureTimeWithDelay().isBefore(currentTime)) {
       System.out.println(
           "Train number " + trainNumber 
           + " has left the station and has been removed from the register!");

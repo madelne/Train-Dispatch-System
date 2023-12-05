@@ -52,7 +52,7 @@ public class TrainDepartureRegister {
     } else {
       trainDepartures.putIfAbsent(trainDeparture.getTrainNumber(), trainDeparture);
       trainDeparture.validateTrainDeparture(currentTime);
-      removePreviousDepartures();
+      removePreviousAndTomorrowsDepartures();
     }
     
   }
@@ -104,8 +104,10 @@ public class TrainDepartureRegister {
     } else {
       HashMap<Integer, TrainDeparture> trainsWithDestination = new HashMap<>();
       trainDepartures.entrySet().stream()
-          .filter(trainDeparture -> trainDeparture.getValue().getDestination().equals(destination))
-          .forEach(trainDeparture -> trainsWithDestination.put(trainDeparture.getKey(), 
+          .filter(trainDeparture -> 
+          trainDeparture.getValue().getDestination().equals(destination))
+          .forEach(trainDeparture -> 
+          trainsWithDestination.put(trainDeparture.getKey(), 
           trainDeparture.getValue()));
       return trainsWithDestination;
     }
@@ -116,19 +118,16 @@ public class TrainDepartureRegister {
    * This method removes all trains that have had departure time, including delay, 
    * prior to the current time.
    */
-  public void removePreviousDepartures() {
+  public void removePreviousAndTomorrowsDepartures() {
     this.trainDepartures = trainDepartures.entrySet().stream()
-      .filter(entry -> {
-        TrainDeparture trainDeparture = entry.getValue();
-        LocalTime departureTimeWithDelay = trainDeparture.departureTimeWithDelay();
-        return departureTimeWithDelay.isAfter(currentTime); })
+      .filter(trainDeparture -> 
+      trainDeparture.getValue().departureTimeWithDelay().isAfter(currentTime) 
+      || trainDeparture.getValue().departureTimeWithDelay().isAfter(
+      trainDeparture.getValue().getDepartureTime()))
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
         (existing, replacement) -> existing, HashMap::new));
-
-    
   }
-
   
   /**
    * This method makes a HashMap with all the train departures sorted by departure time.
@@ -158,13 +157,7 @@ public class TrainDepartureRegister {
     trainDepartures.entrySet()
         .forEach(trainDeparture ->
         trainDeparture.getValue().validateTrainDeparture(currentTime));
-    removePreviousDepartures();
-    trainDepartures.entrySet().stream()
-        .filter(trainDeparture -> 
-        trainDeparture.getValue().departureTimeWithDelay()
-        .isBefore(trainDeparture.getValue().getDepartureTime()))
-        .forEach(trainDeparture -> 
-        removeTrainDeparture(trainDeparture.getKey()));
+    removePreviousAndTomorrowsDepartures();
   }
 
   public LocalTime getCurrentTime() {
@@ -173,6 +166,7 @@ public class TrainDepartureRegister {
 
   public void setCurrentTime(LocalTime newTime) {
     this.currentTime = newTime.withSecond(0).withNano(0);
+    removePreviousAndTomorrowsDepartures();
   }
 
   @Override

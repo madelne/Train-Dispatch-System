@@ -201,11 +201,10 @@ public class TrainDepartureTest {
   }
 
   @Test
-  void departureTimeWithDelayPastMidnight() {
+  void shouldReturnDepartureTimeWithDelayPastMidnight() {
     TrainDeparture trainDeparture = new TrainDeparture(
         currentTime.plusHours(6), "K1", 22, "Asker", LocalTime.of(13, 0));
     assertEquals(currentTime.plusHours(6).plusHours(13), trainDeparture.departureTimeWithDelay());
-    /*Trenger jeg egt når jeg tester getDelay?? */
   }
 
   @Test 

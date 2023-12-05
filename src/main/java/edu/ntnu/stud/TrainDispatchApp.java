@@ -217,7 +217,7 @@ public class TrainDispatchApp {
               "The train departure's train number", 1000, 1));
           break;
         case 3:
-          register.removePreviousDepartures();
+          register.removePreviousAndTomorrowsDepartures();
           break;
         case 4:
           System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 1000, 1)));
