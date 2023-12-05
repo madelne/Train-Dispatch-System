@@ -19,15 +19,15 @@ import java.time.LocalTime;
  *<p>Neither the line og trainnumber has a set method and are both private final fields, as they 
  * identify the train and they are not something we wish to change. 
  * 
- * <p>The track is an integer and has a set method. The train's track would still follow the set schedule 
- * if it changed tracks so it is a private, but not final field. 
+ * <p>The track is an integer and has a set method. The train's track would still follow the set 
+ * schedule if it changed tracks so it is a private, but not final field. 
  * 
  * <p>The delay is portrayed as hh:mm and is therefore set as a LocalTime value. The time of delay 
  * is unpredictable and has a set method. The field is private, but not final.
  * 
- * <p>A train departure with departure time null, line as an empty string, train number below 0 or over 
- * 1000, destination as an empty string, track below 0 or over 100 or a 0 delay would not be a valid
- * train departure.
+ * <p>A train departure with departure time null, line as an empty string, train number below 0 or 
+ * over 1000, destination as an empty string, track below 0 or over 100 or a 0 delay would not be a 
+ * valid train departure.
  *
  * <p>@author Madeleine Negård
  */

@@ -1,7 +1,10 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -9,13 +12,15 @@ import java.util.stream.Collectors;
  * a HashMap. The class has two constructors, one that takes a HashMap and one without a parameter.
  * The last constructor creates a new empty HashMap when initialized. 
  * 
- * <p>HashMap trainDepartures is a private field. The keys are the train numbers and the values are trainDeparture objects.
- * The HashMap is not final, but has no set method. Instead it has methods to remove and add 
- * train departures.
+ * <p>HashMap trainDepartures is a private field. The keys are the train numbers and the values are 
+ * trainDeparture objects. The HashMap is not final, but has no set method. Instead it has methods 
+ * to remove and add train departures.
  * 
- * <p>The LocalTime currentTime is a private field. It can be changed and therefore has a set method. 
+ * <p>The LocalTime currentTime is a private field. It can be changed and therefore has a set 
+ * method. 
  * 
- * <p>A message will be printed if the user tries to initialize the a new register with a parameter that is null.
+ * <p>A message will be printed if the user tries to initialize the a new register with a parameter 
+ * that is null.
  *
  * @author Madeleine Negård
  */
@@ -131,11 +136,16 @@ public class TrainDepartureRegister {
   public void removePreviousAndTomorrowsDepartures() {
     this.trainDepartures = trainDepartures.entrySet().stream()
       .filter(trainDeparture -> 
-      trainDeparture.getValue().departureTimeWithDelay().isAfter(currentTime) 
-      || trainDeparture.getValue().departureTimeWithDelay().isAfter(
-      trainDeparture.getValue().getDepartureTime()))
+      trainDeparture.getValue().departureTimeWithDelay().isAfter(currentTime))
       .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
         Map.Entry::getValue, 
+        (existing, replacement) -> existing, HashMap::new));
+    this.trainDepartures = trainDepartures.entrySet().stream()
+      .filter(trainDeparture ->
+      trainDeparture.getValue().departureTimeWithDelay().plusMinutes(1).isAfter(
+      trainDeparture.getValue().getDepartureTime()))
+      .collect(Collectors.toMap(entry -> entry.getValue().getTrainNumber(), 
+        Map.Entry::getValue,
         (existing, replacement) -> existing, HashMap::new));
   }
   

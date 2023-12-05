@@ -1,11 +1,12 @@
 package edu.ntnu.stud.UI;
 
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Scanner;
-
 import edu.ntnu.stud.TrainDeparture;
 import edu.ntnu.stud.TrainDepartureRegister;
+import java.time.LocalTime;
+import java.util.Scanner;
+
+
+
 
 /**
  * This is the user interface for the train dispatch system. The class has a 
@@ -256,6 +257,7 @@ public class TrainDispatchApp {
             register.getTrainDepartures().get(integerAsInput(
               "The train departure's train number", 1000, 1))
                 .setDelay(timeAsInput("New delay"));
+            register.removePreviousAndTomorrowsDepartures();
           } catch (NullPointerException nullPointerException) {
             System.out.println("The train departure does not exist!");
           }
@@ -265,6 +267,7 @@ public class TrainDispatchApp {
           break;
         case 9:
           register.setCurrentTime(timeAsInput("Set current time"));
+          register.removePreviousAndTomorrowsDepartures();
           break;
         default:
           break;
@@ -280,7 +283,7 @@ public class TrainDispatchApp {
   /**
    * This is the main method.
    *
-   * @param args
+   * @param args 
    */
   public static void main(String[]args) {
     TrainDispatchApp menu = new TrainDispatchApp();
