@@ -207,13 +207,4 @@ public class TrainDepartureTest {
     assertEquals(currentTime.plusHours(6).plusHours(13), trainDeparture.departureTimeWithDelay());
   }
 
-  @Test 
-  void validateTrainDeparturePos() {
-    /*Trenger jeg??? brukes i andre metoder */
-  }
-
-  @Test
-  void validateTrainDepartureNeg() {
-    /*Trenger jeg??? brukes i andre metoder */
-  }
 }

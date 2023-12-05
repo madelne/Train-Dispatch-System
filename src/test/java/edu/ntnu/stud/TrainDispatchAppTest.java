@@ -1,4 +1,4 @@
-package edu.ntnu;
+package edu.ntnu.stud;
 
 import org.junit.jupiter.api.Test;
 

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * 
  * <p>The LocalTime currentTime is a private field. It can be changed and therefore has a set method. 
  * 
- * <p>A message will be printed if the user tries to initialize the fields as null.
+ * <p>A message will be printed if the user tries to initialize the a new register with a parameter that is null.
  *
  * @author Madeleine Negård
  */
@@ -176,15 +176,10 @@ public class TrainDepartureRegister {
   }
 
   public void setCurrentTime(LocalTime newTime) {
-    if (newTime.equals(null)) {
-      System.out.println("The new time can not be null and was not changed!");
-    } else {
-      this.currentTime = newTime.withSecond(0).withNano(0);
+    this.currentTime = newTime.withSecond(0).withNano(0);
     removePreviousAndTomorrowsDepartures();
-    }
-    
   }
-
+    
   @Override
   public String toString() {
     return "{" 

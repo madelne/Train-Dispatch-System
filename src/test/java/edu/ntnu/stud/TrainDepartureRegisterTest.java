@@ -179,7 +179,7 @@ public class TrainDepartureRegisterTest {
   }
 
   @Test
-  void shouldPrintMessageInsteadOfRemovingNonExistinTrainDeparture() {
+  void shouldNotRemoveNonExistinTrainDeparture() {
     register1 = new TrainDepartureRegister();
     assertFalse(register1.getTrainDepartures().containsKey(10));
     register1.removeTrainDeparture(10);

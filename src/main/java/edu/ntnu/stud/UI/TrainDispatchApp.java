@@ -1,17 +1,28 @@
-package edu.ntnu.stud;
+package edu.ntnu.stud.UI;
 
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import edu.ntnu.stud.TrainDeparture;
+import edu.ntnu.stud.TrainDepartureRegister;
+
 /**
- * This is the user interface for the train dispatch system.
+ * This is the user interface for the train dispatch system. The class has a 
+ * trainDepartureRegister called register as a private field. 
+ * 
+ * <p>The class has a method called init that initializes the register with 
+ * four train departures, current time set to the actual time and prints out 
+ * a time table for the register.
+ * 
+ * <p>The class also has a method that prints out a menu where the user can 
+ * make several changes to the register.
  *
  * @author Madeleine Negård
  */
 public class TrainDispatchApp {
 
-  public TrainDepartureRegister register = new TrainDepartureRegister();
+  private TrainDepartureRegister register = new TrainDepartureRegister();
 
   /**
    * This method prints out a timetable for the trainDepartures in the register.
