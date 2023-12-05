@@ -1,6 +1,7 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -165,7 +166,7 @@ public class TrainDispatchApp {
    * 
    * @param delay         Amount of time the train is delayed
    */
-  public TrainDeparture chooseTrainDepartureConstructor(LocalTime departureTime, 
+  public TrainDeparture chooseTrainDepartureConstructor(LocalTime departureTime,
       String line, int trainNumber, String destination, int track, LocalTime delay) {
     if (track == 0) {
       if (delay.equals(LocalTime.of(0, 0))) {

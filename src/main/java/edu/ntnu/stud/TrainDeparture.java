@@ -58,7 +58,7 @@ public class TrainDeparture {
     if (departureTime == null) {
       throw new IllegalArgumentException("The departure time can not be null!");
     }
-    if (line == "") {
+    if (line.equals("")) {
       throw new IllegalArgumentException("The line can not be empty!");
     }
     if (trainNumber <= 0 || trainNumber > 1000) {

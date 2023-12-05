@@ -1,9 +1,8 @@
 package edu.ntnu.stud;
 
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.*;
 
 /**
  * This class is a register that holds all train departures.
@@ -130,22 +129,20 @@ public class TrainDepartureRegister {
     
   }
 
+  
   /**
    * This method makes a HashMap with all the train departures sorted by departure time.
    *
    * @return Returns the sorted HashMap
    *
    */
-  public HashMap<Integer, TrainDeparture> sortHashMap() {
-    HashMap<Integer, TrainDeparture> sortedHashMap = new HashMap<>();
+  public LinkedHashMap<Integer, TrainDeparture> sortHashMap() {
+    LinkedHashMap<Integer, TrainDeparture> sortedHashMap = new LinkedHashMap<>();
     trainDepartures.entrySet().stream()
-        .sorted((trainDeparture2, trainDeparture1) -> 
-        (trainDeparture1.getValue().getDepartureTime().getHour()
-        - trainDeparture2.getValue().getDepartureTime().getHour()) 
-        * 100 + (trainDeparture1.getValue().getDepartureTime().getMinute() 
-        * - trainDeparture2.getValue().getDepartureTime().getMinute()))
-        .forEach(trainDeparture -> sortedHashMap.put(trainDeparture.getKey(), 
-        trainDeparture.getValue()));
+        .sorted(Map.Entry.comparingByValue(
+        Comparator.comparing(TrainDeparture::getDepartureTime)))
+        .forEach(trainDeparture -> 
+        sortedHashMap.put(trainDeparture.getKey(), trainDeparture.getValue()));
     return sortedHashMap;
   }
 
