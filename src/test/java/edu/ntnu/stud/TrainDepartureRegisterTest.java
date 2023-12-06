@@ -190,4 +190,17 @@ public class TrainDepartureRegisterTest {
     assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
   }
 
+  @Test
+  void shouldSetNewCurrentTimeWithValidParameter() {
+    register1 = new TrainDepartureRegister();
+    register1.setCurrentTime(currentTime.plusHours(3));
+    assertEquals(currentTime.plusHours(3), register1.getCurrentTime());
+  }
+
+  @Test
+  void shouldNotChangeCurrentTimeWithEarlierNewTime() {
+    register1 = new TrainDepartureRegister();
+    register1.setCurrentTime(currentTime.minusHours(1));
+    assertEquals(currentTime, register1.getCurrentTime());
+  }
 }
