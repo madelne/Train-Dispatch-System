@@ -30,25 +30,32 @@ public class TrainDispatchApp {
    * This method prints out a timetable for the trainDepartures in the register.
    */
   private void printTimeTable() {
-    System.out.println("-----------------------------------------------------");
-    System.out.println("                     Timetable                       ");
-    System.out.println("-----------------------------------------------------");
-    System.out.println("| Departures           | Line    | Track    | "
-        + register.getCurrentTime() + " |");
-    System.out.println("-----------------------------------------------------");
+    System.out.println("----------------------------------------" 
+        + "----------------------------------------");
+    System.out.println(String.format("                                     %s" 
+        + "                                  ", register.getCurrentTime()));
+    System.out.println("---------------------------------------" 
+        + "-----------------------------------------");
+    System.out.println("| Departure Time | Line | Train Number |"
+        + " Destination           | Delay | Track |");
+    System.out.println("---------------------------------------"
+        + "-----------------------------------------");
     register.sortHashMap().entrySet().forEach(train -> {
       String track = String.valueOf(train.getValue().getTrack());
       if (train.getValue().getTrack() == -1) {
         track = "";
       }
-      System.out.println(String.format("| %-20s | %-7s | %-8s | %5s |", 
-          train.getValue().getDestination(),
+      System.out.println(String.format("| %-14s | %-4s | %-12s | %-21s | %5s | %5s |", 
+          train.getValue().getDepartureTime(),
           train.getValue().getLine(),
-          track, 
-          train.getValue().departureTimeWithDelay()));  
+          train.getKey(),
+          train.getValue().getDestination(),
+          train.getValue().getDelay(), 
+          track));  
         }
     );
-    System.out.println("-----------------------------------------------------\n");
+    System.out.println("-----------------------------------------"
+        + "---------------------------------------\n");
   }
 
   /**

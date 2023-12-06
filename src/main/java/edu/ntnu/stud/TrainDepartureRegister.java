@@ -196,12 +196,12 @@ public class TrainDepartureRegister {
    * @param newTime The new time.
    */
   public void setCurrentTime(LocalTime newTime) {
-    if (newTime.isAfter(currentTime)) {
+    if (currentTime.isBefore(newTime)) {
       this.currentTime = newTime.withSecond(0).withNano(0);
       removePreviousAndTomorrowsDepartures();
     } else {
       System.out.print("The new time can not be earlier than the current set time!"
-          + "The current time was not changed");
+          + " The current time was not changed.\n");
     }
   }
     
