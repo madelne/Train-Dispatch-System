@@ -185,13 +185,6 @@ public class TrainDepartureRegisterTest {
     register1.removeTrainDeparture(10);
   }
   
-  /*Fjern???? brukes jo i andre metoder som er testet */
-  @Test 
-  void validTrainDepartureRegisterShouldDoNothing() {
-    register1 = new TrainDepartureRegister();
-    register1.validateTrainDepartureRegister();
-  }
-
   @Test
   void shouldThrowExceptionWithNullHashMap() {
     assertThrows(IllegalArgumentException.class, () -> new TrainDepartureRegister(null));
