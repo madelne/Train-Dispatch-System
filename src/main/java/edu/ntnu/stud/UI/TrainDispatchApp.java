@@ -256,12 +256,12 @@ public class TrainDispatchApp {
         case 7:
           try {
             register.getTrainDepartures().get(integerAsInput(
-              "The train departure's train number", 999, 1))
+                "The train departure's train number", 999, 1))
                 .setDelay(timeAsInput("New delay"));
-            register.removePreviousAndTomorrowsDepartures();
           } catch (NullPointerException nullPointerException) {
             System.out.println("The train departure does not exist!");
           }
+          register.removePreviousAndTomorrowsDepartures();
           break;
         case 8:
           printTimeTable();
@@ -274,7 +274,7 @@ public class TrainDispatchApp {
           try {
             register.getTrainDepartures().get(integerAsInput(
             "The train departure's train number", 999, 1))
-            .setTrack(integerAsInput("New track", 0, 99));
+            .setTrack(integerAsInput("New track", 99, 0));
           } catch (NullPointerException nullPointerException) {
             System.out.println("The train departure does not exist!");
           }

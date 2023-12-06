@@ -189,9 +189,19 @@ public class TrainDepartureRegister {
     return currentTime;
   }
 
+  /**
+   * This method sets a new current time. If the new time is before the current set time,
+   * the method prints out a message and does not change the time.
+   *
+   * @param newTime The new time.
+   */
   public void setCurrentTime(LocalTime newTime) {
-    this.currentTime = newTime.withSecond(0).withNano(0);
-    removePreviousAndTomorrowsDepartures();
+    if (newTime.isAfter(currentTime)) {
+      this.currentTime = newTime.withSecond(0).withNano(0);
+      removePreviousAndTomorrowsDepartures();
+    } else {
+      System.out.print("The new time can not be earlier than the current set time!");
+    }
   }
     
   @Override
