@@ -254,13 +254,14 @@ public class TrainDispatchApp {
           }
           break;
         case 7:
+          int trainNumberCase7 = integerAsInput("The train departure's train number", 999, 1);
           try {
-            register.getTrainDepartures().get(integerAsInput(
-                "The train departure's train number", 999, 1))
-                .setDelay(timeAsInput("New delay"));
+            register.getTrainDepartures().get(trainNumberCase7).getDelay();
           } catch (NullPointerException nullPointerException) {
             System.out.println("The train departure does not exist!");
+            break;
           }
+          register.getTrainDepartures().get(trainNumberCase7).setDelay(timeAsInput("New delay"));
           register.removePreviousAndTomorrowsDepartures();
           break;
         case 8:
@@ -271,13 +272,15 @@ public class TrainDispatchApp {
           register.removePreviousAndTomorrowsDepartures();
           break;
         case 10:
+          int trainNumberCase10 = integerAsInput("The train departure's train number", 999, 1);
           try {
-            register.getTrainDepartures().get(integerAsInput(
-            "The train departure's train number", 999, 1))
-            .setTrack(integerAsInput("New track", 99, 0));
+            register.getTrainDepartures().get(trainNumberCase10).getTrack();
           } catch (NullPointerException nullPointerException) {
             System.out.println("The train departure does not exist!");
+            break;
           }
+          register.getTrainDepartures().get(trainNumberCase10)
+          .setTrack(integerAsInput("New track", 99, 0));
           break;
         default:
           break;

@@ -200,7 +200,8 @@ public class TrainDepartureRegister {
       this.currentTime = newTime.withSecond(0).withNano(0);
       removePreviousAndTomorrowsDepartures();
     } else {
-      System.out.print("The new time can not be earlier than the current set time!");
+      System.out.print("The new time can not be earlier than the current set time!"
+          + "The current time was not changed");
     }
   }
     
