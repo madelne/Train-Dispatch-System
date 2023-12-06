@@ -131,7 +131,9 @@ public class TrainDepartureRegister {
   
   /**
    * This method removes all trains with departure time prior to the current time or is delayed 
-   * until the next day.
+   * until the next day. 
+   * 
+   * <p>In this method i used chat gpt to find a way to convert the stream to a HashMap.
    */
   public void removePreviousAndTomorrowsDepartures() {
     this.trainDepartures = trainDepartures.entrySet().stream()
@@ -151,6 +153,8 @@ public class TrainDepartureRegister {
   
   /**
    * This method makes a HashMap with all the train departures sorted by departure time.
+   * 
+   * <p>Used LinkedHashMap instead of HashMap after asking chat gpt.
    *
    * @return Returns the sorted HashMap
    *
