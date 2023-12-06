@@ -171,7 +171,7 @@ public class TrainDepartureRegister {
    * the method prints out a message and removes the train departure from the register.
    * If the train is delayed until the next day, the train is removed from the register.
    */
-  public void validateTrainDepartureRegister() {
+  private void validateTrainDepartureRegister() {
     if (trainDepartures == null) {
       throw new IllegalArgumentException();
     }

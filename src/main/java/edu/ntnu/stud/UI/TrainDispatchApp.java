@@ -29,7 +29,7 @@ public class TrainDispatchApp {
   /**
    * This method prints out a timetable for the trainDepartures in the register.
    */
-  public void printTimeTable() {
+  private void printTimeTable() {
     System.out.println("-----------------------------------------------------");
     System.out.println("                     Timetable                       ");
     System.out.println("-----------------------------------------------------");
@@ -56,7 +56,7 @@ public class TrainDispatchApp {
    *
    * @return Returns the two numbers as a LocalTime value
    */
-  public LocalTime timeAsInput(String variable) {
+  private LocalTime timeAsInput(String variable) {
     System.out.println("\n" + variable + " hour:");
     input = new Scanner(System.in);
     String departureTimeHoursString = input.nextLine();
@@ -75,7 +75,7 @@ public class TrainDispatchApp {
    *
    * @return         Returns the variable as a string
    */
-  public String stringAsInput(String variable, int maxCharacters) {
+  private String stringAsInput(String variable, int maxCharacters) {
     System.out.println("\n" + variable + ":");
     input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
@@ -94,7 +94,7 @@ public class TrainDispatchApp {
    *
    * @return         Returns the variable as an integer
    */
-  public int integerAsInput(String variable, int max, int min) {
+  private int integerAsInput(String variable, int max, int min) {
     System.out.println("\n" + variable + ":");
     input = new Scanner(System.in);
     String stringFromUser = input.nextLine();
@@ -114,7 +114,7 @@ public class TrainDispatchApp {
    * 
    * @return      The method returns the first valid input given by the user
    */
-  public int validateIntegerInput(String value, int max, int min) {
+  private int validateIntegerInput(String value, int max, int min) {
     input = new Scanner(System.in);
     boolean valid = false;
     int validNumber = 0;
@@ -147,7 +147,7 @@ public class TrainDispatchApp {
    *
    * @return              The method returns the first valid input given by the user
    */
-  public String validateStringInput(String value, int maxCharacters) {
+  private String validateStringInput(String value, int maxCharacters) {
     input = new Scanner(System.in);
     boolean valid = false;
     while (valid == false) {
@@ -179,7 +179,7 @@ public class TrainDispatchApp {
    * 
    * @param delay         Amount of time the train is delayed
    */
-  public TrainDeparture chooseTrainDepartureConstructor(LocalTime departureTime,
+  private TrainDeparture chooseTrainDepartureConstructor(LocalTime departureTime,
       String line, int trainNumber, String destination, int track, LocalTime delay) {
     if (track == 0) {
       if (delay.equals(LocalTime.of(0, 0))) {
@@ -196,7 +196,7 @@ public class TrainDispatchApp {
     }
   }
 
-  void init() {
+  private void init() {
     register.setCurrentTime(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 45), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3)));
@@ -209,7 +209,7 @@ public class TrainDispatchApp {
     printTimeTable();
   }
   
-  void start() {
+  private void start() {
     System.out.println("1: Add train departure\n2: Remove train departure\n"
         + "3: Remove all previous departures\n4: Search by train number\n"
         + "5: Search by destination\n6: Empty register\n7: Add delay\n"
