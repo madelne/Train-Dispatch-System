@@ -196,7 +196,7 @@ public class TrainDepartureRegister {
    * @param newTime The new time.
    */
   public void setCurrentTime(LocalTime newTime) {
-    if (currentTime.isBefore(newTime)) {
+    if (newTime.isAfter(getCurrentTime().minusSeconds(1))) {
       this.currentTime = newTime.withSecond(0).withNano(0);
       removePreviousAndTomorrowsDepartures();
     } else {

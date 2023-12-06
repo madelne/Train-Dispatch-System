@@ -203,4 +203,5 @@ public class TrainDepartureRegisterTest {
     register1.setCurrentTime(currentTime.minusHours(1));
     assertEquals(currentTime, register1.getCurrentTime());
   }
+
 }
