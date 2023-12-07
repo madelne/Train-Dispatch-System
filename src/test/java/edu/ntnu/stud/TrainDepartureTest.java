@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class TrainDepartureTest {
   
-  private LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
+  private LocalTime currentTime = LocalTime.of(0, 0);
   private TrainDeparture trainDeparture;
 
   @Test
@@ -30,12 +30,12 @@ public class TrainDepartureTest {
   @Test
   void shouldInitialiseValidTrainDepartureExtreme() {
     trainDeparture = new TrainDeparture(currentTime.plusHours(1), "0", 
-        1, "/+-#.", 100, LocalTime.of(23, 0));
+        1, "/+-#.", 99, LocalTime.of(23, 0));
     assertEquals(currentTime.plusHours(1), trainDeparture.getDepartureTime());
     assertEquals("0", trainDeparture.getLine());
     assertEquals(1, trainDeparture.getTrainNumber());
     assertEquals("/+-#.", trainDeparture.getDestination());
-    assertEquals(100, trainDeparture.getTrack());
+    assertEquals(99, trainDeparture.getTrack());
     assertEquals(LocalTime.of(23, 0), trainDeparture.getDelay());
   }
 
@@ -73,13 +73,13 @@ public class TrainDepartureTest {
 
   @Test
   void shouldInitialiseValidTrainDepartureWithoutDelayExtreme() {
-    trainDeparture = new TrainDeparture(currentTime.plusHours(1), "+/#æøå", 100, 
-        "+/#æøå", 100);
+    trainDeparture = new TrainDeparture(currentTime.plusHours(1), "+/#æøå", 999, 
+        "+/#æøå", 99);
     assertEquals(currentTime.plusHours(1), trainDeparture.getDepartureTime());
     assertEquals("+/#æøå", trainDeparture.getLine());
-    assertEquals(100, trainDeparture.getTrainNumber());
+    assertEquals(999, trainDeparture.getTrainNumber());
     assertEquals("+/#æøå", trainDeparture.getDestination());
-    assertEquals(100, trainDeparture.getTrack());
+    assertEquals(99, trainDeparture.getTrack());
   }
 
   @Test
