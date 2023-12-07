@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  */
 public class TrainDepartureRegisterTest {
 
-  private LocalTime currentTime = LocalTime.now().withSecond(0).withNano(0);
+  private LocalTime currentTime = LocalTime.of(0, 0);
   private TrainDeparture trainDeparture1;
   private TrainDeparture trainDeparture2;
   private TrainDeparture trainDeparture3;
@@ -70,9 +70,10 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void shouldNotAddDepartedTrainDepartures() {
-    trainDeparture1 = new TrainDeparture(currentTime.minusMinutes(3), "OD10", 
-        100, "Blommenholm", 1);
     register1 = new TrainDepartureRegister();
+    register1.setCurrentTime(LocalTime.of(10, 0));
+    trainDeparture1 = new TrainDeparture(LocalTime.of(10, 0).minusMinutes(3), "OD10", 
+        100, "Blommenholm", 1);
     register1.addTrainDeparture(trainDeparture1);
     assertEquals(new TrainDepartureRegister().getTrainDepartures(), register1.getTrainDepartures());
   }
@@ -132,10 +133,10 @@ public class TrainDepartureRegisterTest {
   @Test
   void shouldRemoveAllDepartedTrainDepartures() {
     trainDeparture1 = new TrainDeparture(
-        LocalTime.now().plusMinutes(3), "T15", 15, "Lillehammer");   
+        currentTime.plusMinutes(3), "T15", 15, "Lillehammer");   
     register1 = new TrainDepartureRegister();
     register1.addTrainDeparture(trainDeparture1);
-    register1.setCurrentTime(LocalTime.now().plusMinutes(10));
+    register1.setCurrentTime(currentTime.plusMinutes(10));
     assertEquals(new TrainDepartureRegister().getTrainDepartures(), register1.getTrainDepartures());
   }
 
@@ -193,8 +194,9 @@ public class TrainDepartureRegisterTest {
   @Test
   void shouldSetNewCurrentTimeWithValidParameter() {
     register1 = new TrainDepartureRegister();
+    LocalTime firstCurrentTime = currentTime;
     register1.setCurrentTime(currentTime.plusHours(3));
-    assertEquals(currentTime.plusHours(3), register1.getCurrentTime());
+    assertEquals(firstCurrentTime.plusHours(3), register1.getCurrentTime());
   }
 
   @Test

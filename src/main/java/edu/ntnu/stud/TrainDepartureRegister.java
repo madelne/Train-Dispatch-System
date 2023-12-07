@@ -36,7 +36,7 @@ public class TrainDepartureRegister {
    *                        as a value
    */
   public TrainDepartureRegister(HashMap<Integer, TrainDeparture> trainDepartures) {
-    this.currentTime = LocalTime.now().withSecond(0).withNano(0);
+    this.currentTime = LocalTime.of(0, 0);
     this.trainDepartures = trainDepartures;
     validateTrainDepartureRegister();
   }
@@ -47,7 +47,7 @@ public class TrainDepartureRegister {
   public TrainDepartureRegister() {
     HashMap<Integer, TrainDeparture> trainDepartures = new HashMap<>();
     this.trainDepartures = trainDepartures;
-    this.currentTime = LocalTime.now().withSecond(0).withNano(0);
+    this.currentTime = LocalTime.of(0, 0);
   }
 
   public HashMap<Integer, TrainDeparture> getTrainDepartures() {
@@ -196,7 +196,7 @@ public class TrainDepartureRegister {
    * @param newTime The new time.
    */
   public void setCurrentTime(LocalTime newTime) {
-    if (newTime.isAfter(getCurrentTime().minusSeconds(1))) {
+    if (newTime.plusSeconds(1).isAfter(getCurrentTime())) {
       this.currentTime = newTime.withSecond(0).withNano(0);
       removePreviousAndTomorrowsDepartures();
     } else {
