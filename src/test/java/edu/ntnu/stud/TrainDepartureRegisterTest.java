@@ -84,7 +84,7 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void shouldReturnTheTrainWithGivenTrainNumber() {
-    trainDeparture1 = new TrainDeparture(LocalTime.now().plusHours(4), "OD10", 
+    trainDeparture1 = new TrainDeparture(currentTime.plusHours(4), "OD10", 
         100, "Blommenholm", 1);
     trainDeparture2 = new TrainDeparture(currentTime.plusHours(3), "C3", 30, 
         "Sandefjord", 3, LocalTime.of(0, 3));
@@ -107,11 +107,11 @@ public class TrainDepartureRegisterTest {
 
   @Test
   void shouldReturnHashMapWithAllTrainDeparturesWithGivenDestination() {
-    trainDeparture1 = new TrainDeparture(LocalTime.now().plusMinutes(5), "OD10", 
+    trainDeparture1 = new TrainDeparture(currentTime.plusMinutes(5), "OD10", 
         100, "Blommenholm", 1);
-    trainDeparture2 = new TrainDeparture(LocalTime.now().plusHours(1), "J1", 010, 
+    trainDeparture2 = new TrainDeparture(currentTime.plusHours(1), "J1", 010, 
         "Gjøvik", LocalTime.of(0, 15));
-    trainDeparture3 = new TrainDeparture(LocalTime.now().plusHours(2), "C3", 30, 
+    trainDeparture3 = new TrainDeparture(currentTime.plusHours(2), "C3", 30, 
         "Blommenholm", 3, LocalTime.of(0, 3));
     register1.addTrainDeparture(trainDeparture1);
     register1.addTrainDeparture(trainDeparture2);
@@ -149,11 +149,11 @@ public class TrainDepartureRegisterTest {
   @Test
   void shouldReturnHashMapSortedByDepartureTime() {
     trainDeparture1 = new TrainDeparture(
-        LocalTime.now().plusMinutes(2), "H1", 66, "Hamar");
+        currentTime.plusMinutes(2), "H1", 66, "Hamar");
     trainDeparture2 = new TrainDeparture(
-        LocalTime.now().plusHours(1), "M14", 2, "Minsk");
+        currentTime.plusHours(1), "M14", 2, "Minsk");
     trainDeparture3 = new TrainDeparture(
-        LocalTime.now().plusMinutes(55), "S5", 55, "Stavanger");
+        currentTime.plusMinutes(55), "S5", 55, "Stavanger");
     HashMap<Integer, TrainDeparture> trainsSorted = new HashMap<>();
     trainsSorted.put(trainDeparture2.getTrainNumber(), trainDeparture2);
     trainsSorted.put(trainDeparture1.getTrainNumber(), trainDeparture1);

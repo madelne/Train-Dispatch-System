@@ -204,7 +204,7 @@ public class TrainDispatchApp {
   }
 
   private void init() {
-    register.setCurrentTime(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()));
+    register.setCurrentTime(LocalTime.of(0, 0));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(17, 45), "L1", 
         1, "Spikkestad", 4, LocalTime.of(0, 3)));
     register.addTrainDeparture(new TrainDeparture(LocalTime.of(14, 14), "L13", 
@@ -322,7 +322,7 @@ public class TrainDispatchApp {
         default:
           break;
       }
-      System.out.println("1: Add train departure\n2: Change train departure\n"
+      System.out.println("\n1: Add train departure\n2: Change train departure\n"
           + "3: Remove all previous and tomorrows departures\n4: Search by train number\n"
           + "5: Search by destination\n6: Empty register\n7: Print updated timetable\n"
           + "8: Set the current time\n9: Exit\n");
