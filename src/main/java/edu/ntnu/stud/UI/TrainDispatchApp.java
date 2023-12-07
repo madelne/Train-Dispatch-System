@@ -225,6 +225,7 @@ public class TrainDispatchApp {
     int choice = integerAsInput("Choice", 9, 1);
     while (choice != 9) {
       switch (choice) {
+        /*Adds a new train departure to the register */
         case 1:
           register.addTrainDeparture(chooseTrainDepartureConstructor(timeAsInput("Departure time"), 
               stringAsInput("Line", 8), integerAsInput("Train number", 999, 1), 
@@ -232,8 +233,14 @@ public class TrainDispatchApp {
               integerAsInput("Track (write 0 if the train departure has no track)", 99, 0), 
               timeAsInput("Delay")));
           break;
+        /* Asks for a train number and gives to choice of removing the train departure, 
+         * adding new delay, setting a new track or returning to the main menu 
+         */
         case 2:
           int trainNumber = integerAsInput("Train number", 999, 1);
+          /* Tries to find the train departure in the register. Prints a message and returns to
+           * the main menu if the train departure does not exist.
+           */
           try {
             register.getTrainDepartures().get(trainNumber).getTrainNumber();
           } catch (NullPointerException nullPointerException) {
@@ -244,12 +251,6 @@ public class TrainDispatchApp {
               "\n1: Remove train departure\n2: Add delay\n3: Set track\n4: Back to main menu");
           int choiceCase2 = integerAsInput("Choice", 4, 1);
           while (choiceCase2 != 4) {
-            try {
-              register.getTrainDepartures().get(trainNumber).getTrainNumber();
-            } catch (NullPointerException nullPointerException) {
-              System.out.println("The train departure does not exist!");
-              break;
-            }
             switch (choiceCase2) {
               case 1:
                 register.removeTrainDeparture(trainNumber);
@@ -270,6 +271,12 @@ public class TrainDispatchApp {
             System.out.println(
                 "\n1: Remove train departure\n2: Add delay\n3: Set track\n4: Back to main menu");
             choiceCase2 = integerAsInput("Choice", 4, 1);
+            try {
+              register.getTrainDepartures().get(trainNumber).getTrainNumber();
+            } catch (NullPointerException nullPointerException) {
+              System.out.println("The train departure does not exist!");
+              break;
+            }
           }
           break;
         case 3:
