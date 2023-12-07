@@ -218,7 +218,7 @@ public class TrainDispatchApp {
   
   private void start() {
     System.out.println("1: Add train departure\n2: Change train departure\n"
-        + "3: Remove all previous departures\n4: Search by train number\n"
+        + "3: Remove all previous and tomorrows departures\n4: Search by train number\n"
         + "5: Search by destination\n6: Empty register\n7: Print updated timetable\n"
         + "8: Set the current time\n9: Exit\n");
     input = new Scanner(System.in);
@@ -234,7 +234,7 @@ public class TrainDispatchApp {
               timeAsInput("Delay")));
           break;
         /* Asks for a train number and gives to choice of removing the train departure, 
-         * adding new delay, setting a new track or returning to the main menu 
+         * adding new delay, setting a new track or returning to the main menu. 
          */
         case 2:
           int trainNumber = integerAsInput("Train number", 999, 1);
@@ -252,15 +252,18 @@ public class TrainDispatchApp {
           int choiceCase2 = integerAsInput("Choice", 4, 1);
           while (choiceCase2 != 4) {
             switch (choiceCase2) {
+              /* Removes the train departure from the register. */
               case 1:
                 register.removeTrainDeparture(trainNumber);
                 choiceCase2 = 4;
                 break;
+              /* Adds new delay */
               case 2:
                 register.getTrainDepartures().get(trainNumber)
                 .setDelay(timeAsInput("New delay"));
                 register.removePreviousAndTomorrowsDepartures();
                 break;
+              /* Sets a new track */
               case 3:
                 register.getTrainDepartures().get(trainNumber)
                 .setTrack(integerAsInput("New track", 99, 0));
@@ -279,15 +282,19 @@ public class TrainDispatchApp {
             }
           }
           break;
+        /* Removes all previous and tomorrows departures */
         case 3:
           register.removePreviousAndTomorrowsDepartures();
           break;
+        /* Searches by train number */
         case 4:
           System.out.println(register.searchByTrainNumber(integerAsInput("Train number", 999, 1)));
           break;
+        /* Searches by destination */
         case 5:
           System.out.println(register.searchByDestination(stringAsInput("Destination", 21)));
           break;
+        /* Removes all train departures from the register */
         case 6:
           boolean valid = false;
           String answer = stringAsInput(
@@ -303,9 +310,11 @@ public class TrainDispatchApp {
             }
           }
           break;
+        /* Prints updated time table */
         case 7:
           printTimeTable();
           break;
+        /* Sets a new current time */
         case 8:
           register.setCurrentTime(timeAsInput("Set current time"));
           register.removePreviousAndTomorrowsDepartures();
@@ -314,7 +323,7 @@ public class TrainDispatchApp {
           break;
       }
       System.out.println("1: Add train departure\n2: Change train departure\n"
-          + "3: Remove all previous departures\n4: Search by train number\n"
+          + "3: Remove all previous and tomorrows departures\n4: Search by train number\n"
           + "5: Search by destination\n6: Empty register\n7: Print updated timetable\n"
           + "8: Set the current time\n9: Exit\n");
       choice = integerAsInput("Choice", 9, 1);
