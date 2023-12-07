@@ -217,10 +217,10 @@ public class TrainDispatchApp {
   }
   
   private void start() {
-    System.out.println("1: Add train departure\n2: Change train departure\n"
-        + "3: Remove all previous and tomorrows departures\n4: Search by train number\n"
-        + "5: Search by destination\n6: Empty register\n7: Print updated timetable\n"
-        + "8: Set the current time\n9: Exit\n");
+    System.out.println("***** Main Menu *****\n1: Add train departure\n"
+        + "2: Change train departure\n3: Remove all previous and tomorrows departures\n"
+        + "4: Search by train number\n5: Search by destination\n6: Empty register\n"
+        + "7: Print updated timetable\n8: Set the current time\n9: Exit\n");
     input = new Scanner(System.in);
     int choice = integerAsInput("Choice", 9, 1);
     while (choice != 9) {
@@ -322,10 +322,10 @@ public class TrainDispatchApp {
         default:
           break;
       }
-      System.out.println("\n1: Add train departure\n2: Change train departure\n"
-          + "3: Remove all previous and tomorrows departures\n4: Search by train number\n"
-          + "5: Search by destination\n6: Empty register\n7: Print updated timetable\n"
-          + "8: Set the current time\n9: Exit\n");
+      System.out.println("***** Main Menu *****\n1: Add train departure\n"
+          + "2: Change train departure\n3: Remove all previous and tomorrows departures\n"
+          + "4: Search by train number\n5: Search by destination\n6: Empty register\n"
+          + "7: Print updated timetable\n8: Set the current time\n9: Exit\n");
       choice = integerAsInput("Choice", 9, 1);
     }
   }
