@@ -218,7 +218,7 @@ public class TrainDispatchApp {
   
   private void start() {
     System.out.println("***** Main Menu *****\n1: Add train departure\n"
-        + "2: Change train departure\n3: Remove all previous and tomorrows departures\n"
+        + "2: Edit train departure\n3: Remove all previous and tomorrows departures\n"
         + "4: Search by train number\n5: Search by destination\n6: Empty register\n"
         + "7: Print updated timetable\n8: Set the current time\n9: Exit\n");
     input = new Scanner(System.in);
@@ -248,7 +248,8 @@ public class TrainDispatchApp {
             break;
           }
           System.out.println(
-              "\n1: Remove train departure\n2: Add delay\n3: Set track\n4: Back to main menu");
+              "\n*** Edit train departure ***\n1: Remove train departure\n"
+              + "2: Add delay\n3: Set track\n4: Back to main menu");
           int choiceCase2 = integerAsInput("Choice", 4, 1);
           while (choiceCase2 != 4) {
             switch (choiceCase2) {
@@ -272,7 +273,8 @@ public class TrainDispatchApp {
                 break;
             }
             System.out.println(
-                "\n1: Remove train departure\n2: Add delay\n3: Set track\n4: Back to main menu");
+                "\n*** Edit train departure ***\n1: Remove train departure\n"
+                + "2: Add delay\n3: Set track\n4: Back to main menu");
             choiceCase2 = integerAsInput("Choice", 4, 1);
             try {
               register.getTrainDepartures().get(trainNumber).getTrainNumber();
@@ -323,7 +325,7 @@ public class TrainDispatchApp {
           break;
       }
       System.out.println("***** Main Menu *****\n1: Add train departure\n"
-          + "2: Change train departure\n3: Remove all previous and tomorrows departures\n"
+          + "2: Edit train departure\n3: Remove all previous and tomorrows departures\n"
           + "4: Search by train number\n5: Search by destination\n6: Empty register\n"
           + "7: Print updated timetable\n8: Set the current time\n9: Exit\n");
       choice = integerAsInput("Choice", 9, 1);
