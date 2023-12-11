@@ -1,31 +1,30 @@
 # Portfolio project IDATA1003 - 2023
 This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
 
-STUDENT NAME = "Your name"  
-STUDENT ID = "Your ID"
+STUDENT NAME = "Madeleine Negård"  
+STUDENT ID = "111697"
 
 ## Project description
 
-[//]: # (TODO: Write a short description of your project/product here.)
+[//]: # This project is a system of traindepartures.
 
 ## Project structure
 
-[//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
+[//]: # My project is structured with three main classes that are stored in the scr/main/java/edu/ntnu/stud package. The TrainDeparture <p>class, the TrainDeparteRegister class and the TrainDispatchApp class. The user interface TrainDispatchApp is stored in the package ui <p>within the main package. The JUnit-test classes are stored in the src/test/java/edu/ntnu/stud package. 
 
 ## Link to repository
 
-[//]: # (TODO: Include a link to your repository here.)
+[//]: # https://gitlab.stud.idi.ntnu.no/madelne/mappe 
 
 ## How to run the project
 
-[//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
-What is the input and output of the program? What is the expected behaviour of the program?)
+[//]: # The project is run from the user interface, TrainDispatchApp, that holds the main method. This class prints out a menu and the <p>user enters one of the numbers that is presented in the menu. The program is expected to alert the user if the entered input is not <p>valid and the user will get the chance to try again. Option 9 in the main menu will close the menu and the program will stop running.
 
 ## How to run the tests
 
-[//]: # (TODO: Describe how to run the tests here.)
+[//]: # The tests will run automatically by running the the test classes. 
 
 ## References
 
-[//]: # (TODO: Include references here, if any. For example, if you have used code from the course book, include a reference to the chapter.
-Or if you have used code from a website or other source, include a link to the source.)
+[//]: # chat gpt, removePreviousAndTomorrowsDepartures and sortHasMap methods
+<p>  https://stackoverflow.com/questions/43498884/java-8-nested-streams-return-a-value-in-last-stream, searchByTrainNumber method
