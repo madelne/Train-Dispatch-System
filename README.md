@@ -10,7 +10,7 @@ STUDENT ID = "111697"
 
 ## Project structure
 
-[//]: # My project is structured with three main classes that are stored in the scr/main/java/edu/ntnu/stud package. The TrainDeparture <p>class, the TrainDeparteRegister class and the TrainDispatchApp class. The user interface TrainDispatchApp is stored in the package ui <p>within the main package. The JUnit-test classes are stored in the src/test/java/edu/ntnu/stud package. 
+[//]: # My project is structured with three classes that are stored in the scr/main/java/edu/ntnu/stud package. The TrainDeparture <p>class, the TrainDeparteRegister class and the TrainDispatchApp class. The user interface TrainDispatchApp is stored in the package ui <p>within the main package. The JUnit-test classes are stored in the src/test/java/edu/ntnu/stud package. 
 
 ## Link to repository
 
