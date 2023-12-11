@@ -20,6 +20,8 @@ import java.util.Scanner;
  * make several changes to the register.
  *
  * @author Madeleine Negård
+ * 
+ * @version 6.0
  */
 public class TrainDispatchApp {
 
